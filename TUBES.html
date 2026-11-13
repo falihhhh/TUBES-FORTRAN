@@ -3,14 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Manual TUBES FORTRAN</title>
+    <title>Hasil Analisis Algoritma</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
-        h1 { color: #333; }
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
     </style>
 </head>
 <body>
-    <h1>Selamat Datang di User Manual</h1>
-    <p>Halaman ini sedang dalam tahap pengembangan.</p>
+    <div class="container">
+        <h1>Hasil Eksekusi Python (FOTOB.py)</h1>
+        <p>Di bawah ini adalah data yang ditarik otomatis dari file <b>results.json</b>:</p>
+        
+        <!-- Area untuk menampilkan data -->
+        <pre id="hasil-python">Loading data...</pre>
+    </div>
+
+    <script>
+        // Mengambil file results.json dari folder yang sama
+        fetch('results.json')
+            .then(response => response.json())
+            .then(data => {
+                // Menuliskan isi data JSON ke dalam elemen <pre> di atas
+                document.getElementById('hasil-python').textContent = JSON.stringify(data, null, 4);
+            })
+            .catch(error => {
+                document.getElementById('hasil-python').textContent = "Gagal memuat data! Pastikan file results.json sudah ada dan ikut ter-push ke GitHub.";
+            });
+    </script>
 </body>
 </html>
