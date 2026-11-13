@@ -3,32 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hasil Analisis Algoritma</title>
+    <title>Analisis Algoritma Sorting</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f9; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #f8f9fa; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; font-size: 1.8em; }
+        h2 { color: #34495e; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 30px; font-weight: bold; }
+        .abstract, .conclusion { background: #e8f4f8; padding: 15px; border-left: 5px solid #3498db; margin-bottom: 20px; border-radius: 5px; }
+        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 0.9em; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hasil Eksekusi Python (FOTOB.py)</h1>
-        <p>Di bawah ini adalah data yang ditarik otomatis dari file <b>results.json</b>:</p>
-        
-        <!-- Area untuk menampilkan data -->
-        <pre id="hasil-python">Loading data...</pre>
+        <h1>Analisis Perbandingan Kecepatan Algoritma Bubble Sort, Selection Sort, dan Insertion Sort pada Berbagai Ukuran dan Kondisi Data</h1>
+        <div class="subtitle">Kelompok 26 - PELLINORE, TUGAS BESAR FORTRAN 2026</div>
+
+        <h2>Abstrak & Latar Belakang</h2>
+        <div class="abstract">
+            <p>Penelitian ini mengukur dan membandingkan waktu eksekusi algoritma Bubble Sort, Selection Sort, dan Insertion Sort secara empiris pada berbagai ukuran dan kondisi data.</p>
+            <p>Pengujian dilakukan pada data bilangan bulat acak berukuran 100 sampai 5.000 elemen, serta pada data terurut, acak, dan terbalik.</p>
+        </div>
+
+        <h2>Hasil Pengukuran (Live dari Program Python)</h2>
+        <p>Di bawah ini adalah hasil waktu eksekusi asli yang ditarik langsung dari file <b>results.json</b> yang dihasilkan oleh program Python kami:</p>
+        <pre id="hasil-python">Mengambil data hasil pengujian...</pre>
+
+        <h2>Kesimpulan Pengujian</h2>
+        <div class="conclusion">
+            <ul>
+                <li>Pada data acak, waktu eksekusi ketiga algoritma tumbuh secara kuadratik sesuai kompleksitas O(n²), dan Bubble Sort adalah yang paling lambat.</li>
+                <li>Pada data yang sudah terurut, Bubble Sort (dengan penanda pertukaran) dan Insertion Sort jauh lebih cepat karena berperilaku O(n), sedangkan Selection Sort tidak terpengaruh.</li>
+                <li>Pada data terbalik, Selection Sort menjadi yang tercepat karena jumlah pertukarannya paling sedikit.</li>
+            </ul>
+        </div>
     </div>
 
     <script>
-        // Mengambil file results.json dari folder yang sama
         fetch('results.json')
             .then(response => response.json())
             .then(data => {
-                // Menuliskan isi data JSON ke dalam elemen <pre> di atas
                 document.getElementById('hasil-python').textContent = JSON.stringify(data, null, 4);
             })
             .catch(error => {
-                document.getElementById('hasil-python').textContent = "Gagal memuat data! Pastikan file results.json sudah ada dan ikut ter-push ke GitHub.";
+                document.getElementById('hasil-python').textContent = "Gagal memuat data results.json. Pastikan file tersebut sudah di-push ke GitHub.";
             });
     </script>
 </body>
