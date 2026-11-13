@@ -1,0 +1,128 @@
+{
+ "env": {
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "processor": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel"
+ },
+ "random": {
+  "100": {
+   "Bubble Sort": [
+    0.438,
+    0.008
+   ],
+   "Selection Sort": [
+    0.196,
+    0.002
+   ],
+   "Insertion Sort": [
+    0.179,
+    0.002
+   ]
+  },
+  "500": {
+   "Bubble Sort": [
+    14.391,
+    2.321
+   ],
+   "Selection Sort": [
+    5.01,
+    0.311
+   ],
+   "Insertion Sort": [
+    4.997,
+    0.7
+   ]
+  },
+  "1000": {
+   "Bubble Sort": [
+    59.122,
+    11.521
+   ],
+   "Selection Sort": [
+    20.041,
+    1.576
+   ],
+   "Insertion Sort": [
+    18.99,
+    1.603
+   ]
+  },
+  "2500": {
+   "Bubble Sort": [
+    325.497,
+    15.767
+   ],
+   "Selection Sort": [
+    126.943,
+    16.358
+   ],
+   "Insertion Sort": [
+    151.737,
+    26.226
+   ]
+  },
+  "5000": {
+   "Bubble Sort": [
+    1796.821,
+    125.464
+   ],
+   "Selection Sort": [
+    446.777,
+    41.99
+   ],
+   "Insertion Sort": [
+    441.461,
+    26.402
+   ]
+  }
+ },
+ "cases": {
+  "Terurut (best case)": {
+   "Bubble Sort": [
+    0.094,
+    0.003
+   ],
+   "Selection Sort": [
+    58.097,
+    6.892
+   ],
+   "Insertion Sort": [
+    0.157,
+    0.002
+   ]
+  },
+  "Acak (average case)": {
+   "Bubble Sort": [
+    189.343,
+    20.84
+   ],
+   "Selection Sort": [
+    69.123,
+    3.826
+   ],
+   "Insertion Sort": [
+    68.407,
+    4.835
+   ]
+  },
+  "Terbalik (worst case)": {
+   "Bubble Sort": [
+    254.011,
+    12.247
+   ],
+   "Selection Sort": [
+    68.576,
+    7.704
+   ],
+   "Insertion Sort": [
+    138.925,
+    10.789
+   ]
+  }
+ },
+ "ops": {
+  "Bubble Sort": 498834,
+  "Selection Sort": 499500,
+  "Insertion Sort": 256316
+ }
+}
