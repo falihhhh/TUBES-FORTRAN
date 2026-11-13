@@ -3,51 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisis Algoritma Sorting</title>
+    <title>Analisis Perbandingan Kecepatan Algoritma - Kelompok 26</title>
+    <!-- Memanggil library Chart.js untuk membuat grafik -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #f8f9fa; padding: 20px; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; text-align: center; font-size: 1.8em; }
-        h2 { color: #34495e; border-bottom: 2px solid #eee; padding-bottom: 5px; }
-        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 30px; font-weight: bold; }
-        .abstract, .conclusion { background: #e8f4f8; padding: 15px; border-left: 5px solid #3498db; margin-bottom: 20px; border-radius: 5px; }
-        pre { background: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 0.9em; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        .authors {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+        h2 {
+            color: #2980b9;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        .abstract {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #2980b9;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 30px auto;
+        }
+        .conclusion {
+            background: #e8f6f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Analisis Perbandingan Kecepatan Algoritma Bubble Sort, Selection Sort, dan Insertion Sort pada Berbagai Ukuran dan Kondisi Data</h1>
-        <div class="subtitle">Kelompok 26 - PELLINORE, TUGAS BESAR FORTRAN 2026</div>
 
-        <h2>Abstrak & Latar Belakang</h2>
-        <div class="abstract">
-            <p>Penelitian ini mengukur dan membandingkan waktu eksekusi algoritma Bubble Sort, Selection Sort, dan Insertion Sort secara empiris pada berbagai ukuran dan kondisi data.</p>
-            <p>Pengujian dilakukan pada data bilangan bulat acak berukuran 100 sampai 5.000 elemen, serta pada data terurut, acak, dan terbalik.</p>
+    <div class="container">
+        <!-- Judul Paper -->
+        <h1>Analisis Perbandingan Kecepatan Algoritma Bubble Sort, Selection Sort, dan Insertion Sort pada Berbagai Ukuran dan Kondisi Data</h1>
+        <div class="authors">
+            <b>Kelompok 26 - PELLINORE, TUGAS BESAR FORTRAN 2026</b><br>
+            Fakultas Informatika, Universitas Telkom, Bandung
         </div>
 
-        <h2>Hasil Pengukuran (Live dari Program Python)</h2>
-        <p>Di bawah ini adalah hasil waktu eksekusi asli yang ditarik langsung dari file <b>results.json</b> yang dihasilkan oleh program Python kami:</p>
-        <pre id="hasil-python">Mengambil data hasil pengujian...</pre>
+        <!-- Abstrak -->
+        <h2>Abstrak</h2>
+        <div class="abstract">
+            Bubble Sort, Selection Sort, dan Insertion Sort memiliki kompleksitas waktu rata-rata yang sama, yaitu O(n²), sehingga sering dianggap setara. Penelitian ini mengukur dan membandingkan waktu eksekusi ketiga algoritma secara empiris pada berbagai ukuran dan kondisi data. Hasilnya menunjukkan bahwa waktu eksekusi pada data acak tumbuh secara kuadratik sesuai kompleksitas O(n²). Bubble Sort paling lambat, sekitar 2,5 kali lebih lama daripada Selection Sort dan 2,3 kali lebih lama daripada Insertion Sort pada n = 5.000.
+        </div>
 
-        <h2>Kesimpulan Pengujian</h2>
+        <!-- Pendahuluan -->
+        <h2>1. Latar Belakang & Tujuan</h2>
+        <p>Mengurutkan data adalah pekerjaan yang terjadi hampir di setiap aplikasi. Bubble Sort, Selection Sort, dan Insertion Sort adalah tiga algoritma pengurutan sederhana yang biasanya dipelajari pertama kali karena mudah dipahami dan diimplementasikan. Penelitian ini bertujuan mengukur dan membandingkan waktu eksekusi ketiga algoritma pada berbagai ukuran dan kondisi data, menjelaskan penyebab perbedaannya, serta memeriksa kesesuaiannya dengan teori kompleksitas.</p>
+
+        <!-- Hasil Pengujian (Tabel) -->
+        <h2>2. Hasil Pengujian</h2>
+        <p>Berikut adalah waktu eksekusi ketiga algoritma pada data acak berdasarkan ukuran data (n). Waktu dinyatakan dalam milidetik (ms):</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ukuran data (n)</th>
+                    <th>Bubble Sort (ms)</th>
+                    <th>Selection Sort (ms)</th>
+                    <th>Insertion Sort (ms)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>100</td><td>0,31</td><td>0,11</td><td>0,10</td></tr>
+                <tr><td>500</td><td>6,39</td><td>3,04</td><td>2,93</td></tr>
+                <tr><td>1.000</td><td>27,43</td><td>12,18</td><td>11,80</td></tr>
+                <tr><td>2.500</td><td>193,64</td><td>83,29</td><td>80,66</td></tr>
+                <tr><td>5.000</td><td>825,30</td><td>327,49</td><td>352,91</td></tr>
+            </tbody>
+        </table>
+
+        <!-- Grafik Interaktif -->
+        <h3>Gambar 1. Grafik Waktu Eksekusi pada Data Acak</h3>
+        <div class="chart-container">
+            <canvas id="sortingChart"></canvas>
+        </div>
+        <p><i>Dari grafik di atas, terlihat jelas bahwa Bubble Sort (garis merah) mengalami lonjakan waktu yang sangat signifikan dibandingkan dengan Selection Sort dan Insertion Sort ketika data mencapai 5.000 elemen.</i></p>
+
+        <!-- Kesimpulan -->
+        <h2>3. Kesimpulan</h2>
         <div class="conclusion">
             <ul>
-                <li>Pada data acak, waktu eksekusi ketiga algoritma tumbuh secara kuadratik sesuai kompleksitas O(n²), dan Bubble Sort adalah yang paling lambat.</li>
-                <li>Pada data yang sudah terurut, Bubble Sort (dengan penanda pertukaran) dan Insertion Sort jauh lebih cepat karena berperilaku O(n), sedangkan Selection Sort tidak terpengaruh.</li>
-                <li>Pada data terbalik, Selection Sort menjadi yang tercepat karena jumlah pertukarannya paling sedikit.</li>
+                <li>Pada data acak, waktu eksekusi ketiga algoritma tumbuh secara kuadratik terhadap ukuran data, sesuai dengan kompleksitas O(n²). <b>Bubble Sort paling lambat</b>, sekitar 2,3 sampai 2,5 kali lebih lama dibanding Selection Sort dan Insertion Sort.</li>
+                <li>Kondisi data sangat memengaruhi kecepatan. Pada data terurut, Bubble Sort (dengan penanda pertukaran) dan Insertion Sort jauh lebih cepat karena berperilaku O(n).</li>
+                <li>Pada data terbalik (kasus terburuk), <b>Selection Sort menjadi yang tercepat</b> karena jumlah pertukarannya paling sedikit.</li>
             </ul>
         </div>
     </div>
 
+    <!-- Script untuk Menggambar Grafik -->
     <script>
-        fetch('results.json')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('hasil-python').textContent = JSON.stringify(data, null, 4);
-            })
-            .catch(error => {
-                document.getElementById('hasil-python').textContent = "Gagal memuat data results.json. Pastikan file tersebut sudah di-push ke GitHub.";
-            });
+        const ctx = document.getElementById('sortingChart').getContext('2d');
+        const sortingChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['100', '500', '1.000', '2.500', '5.000'],
+                datasets: [
+                    {
+                        label: 'Bubble Sort',
+                        data: [0.31, 6.39, 27.43, 193.64, 825.30],
+                        borderColor: '#e74c3c',
+                        backgroundColor: '#e74c3c',
+                        tension: 0.3,
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'Selection Sort',
+                        data: [0.11, 3.04, 12.18, 83.29, 327.49],
+                        borderColor: '#2ecc71',
+                        backgroundColor: '#2ecc71',
+                        borderDash: [5, 5],
+                        tension: 0.3,
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'Insertion Sort',
+                        data: [0.10, 2.93, 11.80, 80.66, 352.91],
+                        borderColor: '#3498db',
+                        backgroundColor: '#3498db',
+                        borderDash: [2, 2],
+                        tension: 0.3,
+                        borderWidth: 3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { mode: 'index', intersect: false }
+                },
+                scales: {
+                    x: { title: { display: true, text: 'Ukuran data (n)' } },
+                    y: { title: { display: true, text: 'Waktu eksekusi (ms)' }, beginAtZero: true }
+                }
+            }
+        });
     </script>
 </body>
 </html>
