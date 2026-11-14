@@ -5,7 +5,8 @@
     --dark-card: #24272a;
     --light-bg: #ffffff;
     --light-card: #f8f9fa;
-    --accent-red: #e11d48;
+    --accent-red: #660000;
+    --accent-red-hover: #4a0000;
     --text-white: #ffffff;
     --text-gray-light: #a1a1aa;
     --text-black: #18181b;
@@ -121,10 +122,10 @@ body {
 }
 
 .btn-red:hover {
-    background-color: #be123c;
-    border-color: #be123c;
+    background-color: var(--accent-red-hover);
+    border-color: var(--accent-red-hover);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(225, 29, 72, 0.35);
+    box-shadow: 0 8px 20px rgba(102, 0, 0, 0.45);
 }
 
 .btn-outline {
@@ -141,7 +142,7 @@ body {
     padding: 13px 28px;
     border-radius: 3px;
     cursor: pointer;
-    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .btn-outline:hover {
@@ -379,7 +380,7 @@ tr {
     margin-bottom: 6px;
 }
 
-/* FITUR INTERAKTIF: COBA SENDIRI (MONOCHROME) */
+/* FITUR INTERAKTIF: COBA SENDIRI (MONOCHROME + MAROON) */
 .demo-box {
     background: var(--light-card);
     border: 1px solid var(--border-light);

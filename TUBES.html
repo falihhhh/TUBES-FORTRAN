@@ -298,8 +298,8 @@
                     {
                         label: 'Bubble Sort',
                         data: [0.31, 6.39, 27.43, 193.64, 825.30],
-                        borderColor: '#e11d48',
-                        backgroundColor: 'rgba(225, 29, 72, 0.08)',
+                        borderColor: '#660000',
+                        backgroundColor: 'rgba(102, 0, 0, 0.1)',
                         fill: true,
                         tension: 0.25,
                         borderWidth: 3
@@ -343,7 +343,14 @@
             data: {
                 labels: ['Terurut (Best Case)', 'Acak (Average Case)', 'Terbalik (Worst Case)'],
                 datasets: [
-                    { label: 'Bubble Sort', data: [0.07, 113.45, 157.24], backgroundColor: '#e11d48', borderRadius: 2 },
+                    {
+                        label: 'Bubble Sort',
+                        data: [0.07, 113.45, 157.24],
+                        backgroundColor: '#660000',
+                        borderColor: '#8f1d1d',
+                        borderWidth: 1,
+                        borderRadius: 2
+                    },
                     { label: 'Selection Sort', data: [48.38, 46.81, 51.87], backgroundColor: '#ffffff', borderRadius: 2 },
                     { label: 'Insertion Sort', data: [0.12, 58.49, 89.16], backgroundColor: '#71717a', borderRadius: 2 }
                 ]
@@ -451,7 +458,7 @@
             times.sort((a, b) => a.val - b.val);
             const fastestKey = times[0].key;
 
-            // Skala lebar bar (gunakan perbandingan jika waktu sangat kecil < 0.05ms)
+            // Skala lebar bar
             const maxTime = Math.max(res.bubble.time, res.selection.time, res.insertion.time);
             const maxComp = Math.max(res.bubble.comp, res.selection.comp, res.insertion.comp, 1);
 
