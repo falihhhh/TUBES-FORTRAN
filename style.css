@@ -5,8 +5,9 @@
     --dark-card: #24272a;
     --light-bg: #ffffff;
     --light-card: #f8f9fa;
-    --accent-red: #660000;
-    --accent-red-hover: #4a0000;
+    --accent-red: #440404;
+    --accent-red-hover: #2c0202;
+    --accent-red-border: #6e1414;
     --text-white: #ffffff;
     --text-gray-light: #a1a1aa;
     --text-black: #18181b;
@@ -108,7 +109,7 @@ body {
     display: inline-block;
     background-color: var(--accent-red);
     color: #ffffff;
-    border: 1px solid var(--accent-red);
+    border: 1px solid var(--accent-red-border);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
@@ -118,14 +119,14 @@ body {
     padding: 13px 28px;
     border-radius: 3px;
     cursor: pointer;
-    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .btn-red:hover {
     background-color: var(--accent-red-hover);
-    border-color: var(--accent-red-hover);
+    border-color: #8c1d1d;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(102, 0, 0, 0.45);
+    box-shadow: 0 8px 20px rgba(68, 4, 4, 0.55);
 }
 
 .btn-outline {
@@ -232,6 +233,10 @@ body {
     border-color: var(--accent-red);
 }
 
+.band-dark .editorial-card:hover {
+    border-color: var(--accent-red-border);
+}
+
 .card-kicker {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.7rem;
@@ -256,6 +261,10 @@ body {
     background-color: var(--accent-red);
     margin-bottom: 14px;
     transition: width 0.3s ease;
+}
+
+.band-dark .red-bar {
+    background-color: var(--accent-red-border);
 }
 
 .editorial-card:hover .red-bar {
@@ -345,6 +354,10 @@ tr {
     text-decoration-thickness: 2px;
 }
 
+.band-dark .mono-bold {
+    text-decoration-color: #8c1d1d;
+}
+
 .mono-muted {
     opacity: 0.65;
 }
@@ -371,6 +384,10 @@ tr {
     font-size: 0.92rem;
 }
 
+.band-dark .analysis-note {
+    border-left-color: var(--accent-red-border);
+}
+
 .analysis-note ul {
     padding-left: 18px;
     margin-top: 8px;
@@ -380,7 +397,7 @@ tr {
     margin-bottom: 6px;
 }
 
-/* FITUR INTERAKTIF: COBA SENDIRI (MONOCHROME + MAROON) */
+/* FITUR INTERAKTIF: COBA SENDIRI (MONOCHROME + #440404) */
 .demo-box {
     background: var(--light-card);
     border: 1px solid var(--border-light);
@@ -421,8 +438,8 @@ tr {
 .demo-input:focus,
 .demo-select:focus {
     outline: none;
-    border-color: #18181b;
-    box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.08);
+    border-color: var(--accent-red);
+    box-shadow: 0 0 0 3px rgba(68, 4, 4, 0.12);
 }
 
 .demo-textarea {
