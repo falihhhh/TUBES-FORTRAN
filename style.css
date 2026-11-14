@@ -5,9 +5,9 @@
     --dark-card: #24272a;
     --light-bg: #ffffff;
     --light-card: #f8f9fa;
-    --accent-red: #440404;
-    --accent-red-hover: #2c0202;
-    --accent-red-border: #6e1414;
+    --accent: #36444f;
+    --accent-hover: #253038;
+    --accent-light: #5c7285;
     --text-white: #ffffff;
     --text-gray-light: #a1a1aa;
     --text-black: #18181b;
@@ -107,9 +107,9 @@ body {
 
 .btn-red {
     display: inline-block;
-    background-color: var(--accent-red);
+    background-color: var(--accent);
     color: #ffffff;
-    border: 1px solid var(--accent-red-border);
+    border: 1px solid var(--accent-light);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
@@ -123,10 +123,10 @@ body {
 }
 
 .btn-red:hover {
-    background-color: var(--accent-red-hover);
-    border-color: #8c1d1d;
+    background-color: var(--accent-hover);
+    border-color: #7a93a8;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(68, 4, 4, 0.55);
+    box-shadow: 0 8px 20px rgba(54, 68, 79, 0.55);
 }
 
 .btn-outline {
@@ -230,11 +230,11 @@ body {
 
 .editorial-card:hover {
     transform: translateY(-5px);
-    border-color: var(--accent-red);
+    border-color: var(--accent);
 }
 
 .band-dark .editorial-card:hover {
-    border-color: var(--accent-red-border);
+    border-color: var(--accent-light);
 }
 
 .card-kicker {
@@ -258,13 +258,13 @@ body {
 .red-bar {
     width: 32px;
     height: 3px;
-    background-color: var(--accent-red);
+    background-color: var(--accent);
     margin-bottom: 14px;
     transition: width 0.3s ease;
 }
 
 .band-dark .red-bar {
-    background-color: var(--accent-red-border);
+    background-color: var(--accent-light);
 }
 
 .editorial-card:hover .red-bar {
@@ -349,13 +349,13 @@ tr {
 .mono-bold {
     font-weight: 800;
     text-decoration: underline;
-    text-decoration-color: var(--accent-red);
+    text-decoration-color: var(--accent);
     text-underline-offset: 4px;
     text-decoration-thickness: 2px;
 }
 
 .band-dark .mono-bold {
-    text-decoration-color: #8c1d1d;
+    text-decoration-color: var(--accent-light);
 }
 
 .mono-muted {
@@ -377,7 +377,7 @@ tr {
 
 /* Box Analisis Editorial */
 .analysis-note {
-    border-left: 3px solid var(--accent-red);
+    border-left: 3px solid var(--accent);
     padding: 14px 20px;
     margin: 20px 0;
     background: rgba(128, 128, 128, 0.06);
@@ -385,7 +385,7 @@ tr {
 }
 
 .band-dark .analysis-note {
-    border-left-color: var(--accent-red-border);
+    border-left-color: var(--accent-light);
 }
 
 .analysis-note ul {
@@ -397,7 +397,7 @@ tr {
     margin-bottom: 6px;
 }
 
-/* FITUR INTERAKTIF: COBA SENDIRI (MONOCHROME + #440404) */
+/* FITUR INTERAKTIF: COBA SENDIRI (MONOCHROME + #36444f) */
 .demo-box {
     background: var(--light-card);
     border: 1px solid var(--border-light);
@@ -438,8 +438,8 @@ tr {
 .demo-input:focus,
 .demo-select:focus {
     outline: none;
-    border-color: var(--accent-red);
-    box-shadow: 0 0 0 3px rgba(68, 4, 4, 0.12);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(54, 68, 79, 0.14);
 }
 
 .demo-textarea {
@@ -505,7 +505,7 @@ tr {
     padding-top: 2px;
 }
 
-.algo-name.bubble { color: var(--accent-red); }
+.algo-name.bubble { color: var(--accent); }
 .algo-name.selection { color: #18181b; }
 .algo-name.insertion { color: #52525b; }
 
@@ -524,7 +524,7 @@ tr {
     transition: width 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bar-fill.bubble { background-color: var(--accent-red); }
+.bar-fill.bubble { background-color: var(--accent); }
 .bar-fill.selection { background-color: #18181b; }
 .bar-fill.insertion { background-color: #71717a; }
 
@@ -534,7 +534,7 @@ tr {
 }
 
 .fastest-badge {
-    color: var(--accent-red);
+    color: var(--accent);
     font-weight: 800;
 }
 
