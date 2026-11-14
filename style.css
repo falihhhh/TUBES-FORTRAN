@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --bg-main: #f4f4f5;
-    --surface: #ffffff;
-    --primary: #09090b;
-    --accent: #18181b;
-    --accent-soft: #f4f4f5;
-    --text-main: #27272a;
-    --text-muted: #52525b;
-    --border: #e4e4e7;
-    --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+    --bg-main: #000000;
+    --surface: #121212;
+    --surface-hover: #1c1c1e;
+    --accent: #3b82f6;
+    --text-main: #ffffff;
+    --text-muted: #a1a1aa;
+    --border: #27272a;
+    --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.7);
 }
 
 * {
@@ -26,12 +25,13 @@ body {
     padding-bottom: 60px;
 }
 
-/* Hero Banner Hitam Monokrom */
+/* Hero Banner Hitam */
 .hero {
-    background: linear-gradient(135deg, #000000 0%, #27272a 100%);
+    background: linear-gradient(180deg, #111827 0%, #000000 100%);
     color: #ffffff;
     padding: 60px 20px 85px 20px;
     text-align: center;
+    border-bottom: 1px solid var(--border);
 }
 
 .hero-content {
@@ -41,9 +41,9 @@ body {
 
 .badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #f4f4f5;
+    background: rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    color: #60a5fa;
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -58,9 +58,10 @@ body {
     font-weight: 800;
     line-height: 1.3;
     letter-spacing: -0.02em;
+    color: #ffffff;
 }
 
-/* Container Utama Mengambang */
+/* Container Utama */
 .container {
     max-width: 960px;
     margin: -45px auto 0 auto;
@@ -81,26 +82,26 @@ body {
     border-radius: 14px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-4px);
-    border-color: #000000;
+    border-color: var(--accent);
 }
 
 .stat-label {
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #52525b;
+    color: #60a5fa;
     margin-bottom: 6px;
 }
 
 .stat-value {
     font-size: 1.25rem;
     font-weight: 800;
-    color: #000000;
+    color: #ffffff;
     margin-bottom: 4px;
 }
 
@@ -120,19 +121,19 @@ body {
 }
 
 h2 {
-    color: #000000;
+    color: #ffffff;
     font-size: 1.4rem;
     font-weight: 800;
     margin-bottom: 20px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid var(--border);
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 h3 {
-    color: #09090b;
+    color: #f4f4f5;
     font-size: 1.1rem;
     font-weight: 700;
     margin: 28px 0 12px 0;
@@ -141,9 +142,10 @@ h3 {
 p {
     margin-bottom: 16px;
     font-size: 0.95rem;
+    color: #e4e4e7;
 }
 
-/* Styling Tabel Monokrom */
+/* Styling Tabel Dark Mode */
 .table-wrapper {
     overflow-x: auto;
     border-radius: 10px;
@@ -155,26 +157,29 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
+    background-color: #18181b;
 }
 
 th {
-    background-color: #18181b;
+    background-color: #27272a;
     color: #ffffff;
     font-weight: 700;
     padding: 14px 16px;
     text-align: center;
+    border-bottom: 1px solid #3f3f46;
 }
 
 td {
     padding: 13px 16px;
     text-align: center;
+    color: #e4e4e7;
     border-bottom: 1px solid var(--border);
 }
 
 th:first-child, td:first-child {
     text-align: left;
     font-weight: 600;
-    color: #000000;
+    color: #ffffff;
 }
 
 tr:last-child td {
@@ -182,13 +187,14 @@ tr:last-child td {
 }
 
 tr:hover td {
-    background-color: #f4f4f5;
+    background-color: #202024;
 }
 
-/* Highlight Angka Tercepat/Terlambat Monokrom */
+/* Highlight Angka Tercepat/Terlambat Berwarna */
 .tag-fast {
-    background: #09090b;
-    color: #ffffff;
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.3);
     padding: 3px 9px;
     border-radius: 6px;
     font-weight: 700;
@@ -196,17 +202,18 @@ tr:hover td {
 }
 
 .tag-slow {
-    background: #e4e4e7;
-    color: #27272a;
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.3);
     padding: 3px 9px;
     border-radius: 6px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.85rem;
 }
 
 /* Kotak Grafik */
 .chart-box {
-    background: #ffffff;
+    background: #18181b;
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
@@ -215,11 +222,16 @@ tr:hover td {
 
 /* Callout Analisis */
 .insight-box {
-    background: var(--accent-soft);
-    border-left: 4px solid #000000;
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid var(--accent);
     padding: 18px 22px;
     border-radius: 0 10px 10px 0;
     margin: 20px 0;
+    color: #e4e4e7;
+}
+
+.insight-box strong {
+    color: #ffffff;
 }
 
 .insight-box ul {
@@ -241,7 +253,7 @@ tr:hover td {
 }
 
 .conclusion-item {
-    background: #fafafa;
+    background: #18181b;
     border: 1px solid var(--border);
     padding: 18px 20px;
     border-radius: 12px;
@@ -249,7 +261,7 @@ tr:hover td {
 
 .conclusion-num {
     display: inline-block;
-    background: #000000;
+    background: var(--accent);
     color: #ffffff;
     width: 26px;
     height: 26px;
@@ -262,7 +274,7 @@ tr:hover td {
 }
 
 .conclusion-item h4 {
-    color: #000000;
+    color: #ffffff;
     font-size: 1rem;
     margin-bottom: 6px;
 }

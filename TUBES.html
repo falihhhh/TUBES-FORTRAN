@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <!-- Header Hitam Monokrom -->
+    <!-- Header Hitam -->
     <header class="hero">
         <div class="hero-content">
             <div class="badge">Kelompok 26 - PELLINORE • Tugas Besar Fortran 2026</div>
@@ -179,8 +179,9 @@
 
     <script>
         Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+        Chart.defaults.color = '#a1a1aa';
         
-        // Grafik 1 (Monokrom)
+        // Grafik 1 (Berwarna di atas Background Gelap)
         new Chart(document.getElementById('randomChart'), {
             type: 'line',
             data: {
@@ -189,8 +190,8 @@
                     {
                         label: 'Bubble Sort',
                         data: [0.31, 6.39, 27.43, 193.64, 825.30],
-                        borderColor: '#09090b',
-                        backgroundColor: 'rgba(9, 9, 11, 0.08)',
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.15)',
                         fill: true,
                         tension: 0.3,
                         borderWidth: 3
@@ -198,8 +199,8 @@
                     {
                         label: 'Selection Sort',
                         data: [0.11, 3.04, 12.18, 83.29, 327.49],
-                        borderColor: '#52525b',
-                        backgroundColor: '#52525b',
+                        borderColor: '#10b981',
+                        backgroundColor: '#10b981',
                         borderDash: [6, 4],
                         tension: 0.3,
                         borderWidth: 3
@@ -207,8 +208,8 @@
                     {
                         label: 'Insertion Sort',
                         data: [0.10, 2.93, 11.80, 80.66, 352.91],
-                        borderColor: '#a1a1aa',
-                        backgroundColor: '#a1a1aa',
+                        borderColor: '#3b82f6',
+                        backgroundColor: '#3b82f6',
                         borderDash: [2, 3],
                         tension: 0.3,
                         borderWidth: 3
@@ -218,34 +219,37 @@
             options: {
                 responsive: true,
                 plugins: {
-                    title: { display: true, text: 'Gambar 1. Waktu Eksekusi pada Data Acak (ms)', font: { size: 14, weight: 'bold' }, color: '#09090b' },
+                    title: { display: true, text: 'Gambar 1. Waktu Eksekusi pada Data Acak (ms)', font: { size: 14, weight: 'bold' }, color: '#ffffff' },
+                    legend: { labels: { color: '#e4e4e7' } },
                     tooltip: { mode: 'index', intersect: false }
                 },
                 scales: {
-                    x: { title: { display: true, text: 'Ukuran Data (n)' } },
-                    y: { title: { display: true, text: 'Waktu Eksekusi (ms)' }, beginAtZero: true }
+                    x: { title: { display: true, text: 'Ukuran Data (n)', color: '#a1a1aa' }, grid: { color: '#27272a' } },
+                    y: { title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#a1a1aa' }, grid: { color: '#27272a' }, beginAtZero: true }
                 }
             }
         });
 
-        // Grafik 2 (Monokrom)
+        // Grafik 2 (Berwarna di atas Background Gelap)
         new Chart(document.getElementById('casesChart'), {
             type: 'bar',
             data: {
                 labels: ['Terurut (Best Case)', 'Acak (Average Case)', 'Terbalik (Worst Case)'],
                 datasets: [
-                    { label: 'Bubble Sort', data: [0.07, 113.45, 157.24], backgroundColor: '#09090b', borderRadius: 6 },
-                    { label: 'Selection Sort', data: [48.38, 46.81, 51.87], backgroundColor: '#71717a', borderRadius: 6 },
-                    { label: 'Insertion Sort', data: [0.12, 58.49, 89.16], backgroundColor: '#d4d4d8', borderRadius: 6 }
+                    { label: 'Bubble Sort', data: [0.07, 113.45, 157.24], backgroundColor: '#ef4444', borderRadius: 6 },
+                    { label: 'Selection Sort', data: [48.38, 46.81, 51.87], backgroundColor: '#10b981', borderRadius: 6 },
+                    { label: 'Insertion Sort', data: [0.12, 58.49, 89.16], backgroundColor: '#3b82f6', borderRadius: 6 }
                 ]
             },
             options: {
                 responsive: true,
                 plugins: {
-                    title: { display: true, text: 'Gambar 2. Perbandingan Waktu pada Berbagai Kondisi Data (n = 2.000)', font: { size: 14, weight: 'bold' }, color: '#09090b' }
+                    title: { display: true, text: 'Gambar 2. Perbandingan Waktu pada Berbagai Kondisi Data (n = 2.000)', font: { size: 14, weight: 'bold' }, color: '#ffffff' },
+                    legend: { labels: { color: '#e4e4e7' } }
                 },
                 scales: {
-                    y: { title: { display: true, text: 'Waktu Eksekusi (ms)' }, beginAtZero: true }
+                    x: { grid: { color: '#27272a' } },
+                    y: { title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#a1a1aa' }, grid: { color: '#27272a' }, beginAtZero: true }
                 }
             }
         });
