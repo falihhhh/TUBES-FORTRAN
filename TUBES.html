@@ -3,147 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisis Perbandingan Kecepatan Algoritma - Kelompok 26</title>
-    <!-- Memanggil library Chart.js untuk membuat grafik -->
+    <title>Analisis Algoritma Sorting - Kelompok 26 PELLINORE</title>
+    <!-- Menyambungkan ke file style.css -->
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-        .authors {
-            text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 30px;
-            font-size: 0.95em;
-        }
-        h2 {
-            color: #2980b9;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 8px;
-            margin-top: 30px;
-        }
-        .abstract {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-left: 4px solid #2980b9;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.9em;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background-color: #2c3e50;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .chart-container {
-            width: 100%;
-            max-width: 700px;
-            margin: 30px auto;
-        }
-        .conclusion {
-            background: #e8f6f3;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
-        }
-    </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Judul Paper -->
-        <h1>Analisis Perbandingan Kecepatan Algoritma Bubble Sort, Selection Sort, dan Insertion Sort pada Berbagai Ukuran dan Kondisi Data</h1>
-        <div class="authors">
-            <b>Kelompok 26 - PELLINORE, TUGAS BESAR FORTRAN 2026</b><br>
-            Fakultas Informatika, Universitas Telkom, Bandung
+    <!-- Header Gradient Modern -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">Kelompok 26 - PELLINORE • Tugas Besar Fortran 2026</div>
+            <h1>Analisis Perbandingan Kecepatan Algoritma Bubble Sort, Selection Sort, dan Insertion Sort pada Berbagai Ukuran dan Kondisi Data</h1>
+            <p>Fakultas Informatika, Universitas Telkom • Laporan Hasil Pengujian Empiris</p>
         </div>
+    </header>
 
-        <!-- Abstrak -->
-        <h2>Abstrak</h2>
-        <div class="abstract">
-            Bubble Sort, Selection Sort, dan Insertion Sort memiliki kompleksitas waktu rata-rata yang sama, yaitu O(n²), sehingga sering dianggap setara. Penelitian ini mengukur dan membandingkan waktu eksekusi ketiga algoritma secara empiris pada berbagai ukuran dan kondisi data. Hasilnya menunjukkan bahwa waktu eksekusi pada data acak tumbuh secara kuadratik sesuai kompleksitas O(n²). Bubble Sort paling lambat, sekitar 2,5 kali lebih lama daripada Selection Sort dan 2,3 kali lebih lama daripada Insertion Sort pada n = 5.000.
-        </div>
+    <main class="container">
+        <!-- 3 Kartu Ringkasan Utama -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Data Acak (n = 5.000)</div>
+                <div class="stat-value">Selection Sort Tercepat</div>
+                <div class="stat-desc">327,49 ms — 2,5x lebih cepat dibanding Bubble Sort (825,30 ms).</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Data Terurut (Best Case)</div>
+                <div class="stat-value">Bubble & Insertion O(n)</div>
+                <div class="stat-desc">Selesai dalam &lt;0,2 ms, ribuan kali lebih cepat dari kondisi acak.</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Data Terbalik (Worst Case)</div>
+                <div class="stat-value">Selection Sort Unggul</div>
+                <div class="stat-desc">51,87 ms karena jumlah pertukaran maksimal hanya n − 1 kali.</div>
+            </div>
+        </section>
 
-        <!-- Pendahuluan -->
-        <h2>1. Latar Belakang & Tujuan</h2>
-        <p>Mengurutkan data adalah pekerjaan yang terjadi hampir di setiap aplikasi. Bubble Sort, Selection Sort, dan Insertion Sort adalah tiga algoritma pengurutan sederhana yang biasanya dipelajari pertama kali karena mudah dipahami dan diimplementasikan. Penelitian ini bertujuan mengukur dan membandingkan waktu eksekusi ketiga algoritma pada berbagai ukuran dan kondisi data, menjelaskan penyebab perbedaannya, serta memeriksa kesesuaiannya dengan teori kompleksitas.</p>
+        <!-- Bagian 1: Hasil Pengujian -->
+        <section class="card">
+            <h2>1. Hasil Pengujian & Pembahasan Rinci</h2>
 
-        <!-- Hasil Pengujian (Tabel) -->
-        <h2>2. Hasil Pengujian</h2>
-        <p>Berikut adalah waktu eksekusi ketiga algoritma pada data acak berdasarkan ukuran data (n). Waktu dinyatakan dalam milidetik (ms):</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Ukuran data (n)</th>
-                    <th>Bubble Sort (ms)</th>
-                    <th>Selection Sort (ms)</th>
-                    <th>Insertion Sort (ms)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>100</td><td>0,31</td><td>0,11</td><td>0,10</td></tr>
-                <tr><td>500</td><td>6,39</td><td>3,04</td><td>2,93</td></tr>
-                <tr><td>1.000</td><td>27,43</td><td>12,18</td><td>11,80</td></tr>
-                <tr><td>2.500</td><td>193,64</td><td>83,29</td><td>80,66</td></tr>
-                <tr><td>5.000</td><td>825,30</td><td>327,49</td><td>352,91</td></tr>
-            </tbody>
-        </table>
+            <h3>A. Pengaruh Ukuran Data pada Data Acak (Tabel 2)</h3>
+            <p>Waktu eksekusi diukur dalam milidetik (ms) sebagai rata-rata ± simpangan baku (SD) dari 5 pengulangan pada rentang <i>n</i> = 100 hingga 5.000 elemen bilangan bulat acak[cite: 16]:</p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ukuran Data (n)</th>
+                            <th>Bubble Sort (ms)</th>
+                            <th>Selection Sort (ms)</th>
+                            <th>Insertion Sort (ms)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>100</td><td>0,31 ± 0,10</td><td>0,11 ± 0,00</td><td><span class="tag-fast">0,10 ± 0,01</span></td></tr>
+                        <tr><td>500</td><td>6,39 ± 0,11</td><td>3,04 ± 0,05</td><td><span class="tag-fast">2,93 ± 0,20</span></td></tr>
+                        <tr><td>1.000</td><td>27,43 ± 0,88</td><td>12,18 ± 0,52</td><td><span class="tag-fast">11,80 ± 0,25</span></td></tr>
+                        <tr><td>2.500</td><td>193,64 ± 10,34</td><td>83,29 ± 7,14</td><td><span class="tag-fast">80,66 ± 4,99</span></td></tr>
+                        <tr><td>5.000</td><td><span class="tag-slow">825,30 ± 64,58</span></td><td><span class="tag-fast">327,49 ± 40,11</span></td><td>352,91 ± 62,45</td></tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <!-- Grafik Interaktif -->
-        <h3>Gambar 1. Grafik Waktu Eksekusi pada Data Acak</h3>
-        <div class="chart-container">
-            <canvas id="sortingChart"></canvas>
-        </div>
-        <p><i>Dari grafik di atas, terlihat jelas bahwa Bubble Sort (garis merah) mengalami lonjakan waktu yang sangat signifikan dibandingkan dengan Selection Sort dan Insertion Sort ketika data mencapai 5.000 elemen.</i></p>
+            <div class="chart-box">
+                <canvas id="randomChart"></canvas>
+            </div>
 
-        <!-- Kesimpulan -->
-        <h2>3. Kesimpulan</h2>
-        <div class="conclusion">
-            <ul>
-                <li>Pada data acak, waktu eksekusi ketiga algoritma tumbuh secara kuadratik terhadap ukuran data, sesuai dengan kompleksitas O(n²). <b>Bubble Sort paling lambat</b>, sekitar 2,3 sampai 2,5 kali lebih lama dibanding Selection Sort dan Insertion Sort.</li>
-                <li>Kondisi data sangat memengaruhi kecepatan. Pada data terurut, Bubble Sort (dengan penanda pertukaran) dan Insertion Sort jauh lebih cepat karena berperilaku O(n).</li>
-                <li>Pada data terbalik (kasus terburuk), <b>Selection Sort menjadi yang tercepat</b> karena jumlah pertukarannya paling sedikit.</li>
-            </ul>
-        </div>
-    </div>
+            <div class="insight-box">
+                <strong>Analisis Pertumbuhan Waktu Eksekusi:</strong>
+                <ul>
+                    <li><strong>Pertumbuhan Kuadratik O(n²):</strong> Kenaikan ukuran data 5x lipat (dari 1.000 ke 5.000) meningkatkan waktu eksekusi sekitar 27–30 kali lipat (Bubble Sort 30,1x, Selection Sort 26,9x, Insertion Sort 29,9x), konsisten dengan prediksi kuadratik 5² = 25[cite: 16].</li>
+                    <li><strong>Bubble Sort Paling Lambat:</strong> Pada <i>n</i> = 5.000, Bubble Sort membutuhkan 825,30 ms — sekitar 2,5 kali lebih lambat dari Selection Sort dan 2,3 kali lebih lambat dari Insertion Sort[cite: 16].</li>
+                    <li><strong>Selection vs Insertion Sort:</strong> Keduanya berada pada performa yang hampir setara; perbedaan di <i>n</i> = 5.000 masih berada dalam batas simpangan baku[cite: 16].</li>
+                </ul>
+            </div>
 
-    <!-- Script untuk Menggambar Grafik -->
+            <h3>B. Pengaruh Kondisi Data pada n = 2.000 (Tabel 3)</h3>
+            <p>Pengujian pada 2.000 elemen dengan tiga skenario kondisi data: terurut naik (<i>best case</i>), acak (<i>average case</i>), dan terurut terbalik (<i>worst case</i>)[cite: 16]:</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Kondisi Data</th>
+                            <th>Bubble Sort (ms)</th>
+                            <th>Selection Sort (ms)</th>
+                            <th>Insertion Sort (ms)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Terurut (Best Case)</td>
+                            <td><span class="tag-fast">0,07 ± 0,01</span></td>
+                            <td><span class="tag-slow">48,38 ± 1,63</span></td>
+                            <td><span class="tag-fast">0,12 ± 0,01</span></td>
+                        </tr>
+                        <tr>
+                            <td>Acak (Average Case)</td>
+                            <td><span class="tag-slow">113,45 ± 3,98</span></td>
+                            <td><span class="tag-fast">46,81 ± 0,78</span></td>
+                            <td>58,49 ± 14,17</td>
+                        </tr>
+                        <tr>
+                            <td>Terbalik (Worst Case)</td>
+                            <td><span class="tag-slow">157,24 ± 27,85</span></td>
+                            <td><span class="tag-fast">51,87 ± 2,83</span></td>
+                            <td>89,16 ± 1,73</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-box">
+                <canvas id="casesChart"></canvas>
+            </div>
+
+            <div class="insight-box">
+                <strong>Analisis Pengaruh Kondisi Data:</strong>
+                <ul>
+                    <li><strong>Data Terurut:</strong> Bubble Sort (dengan penanda pertukaran) dan Insertion Sort selesai di bawah 0,2 ms karena berperilaku linier <strong>O(n)</strong> — lebih cepat &gt;1.600x dan ~500x dibanding data acak[cite: 16]. Selection Sort tidak terpengaruh (48,38 ms) karena tetap memindai seluruh elemen[cite: 16].</li>
+                    <li><strong>Data Terbalik:</strong> Waktu Bubble Sort naik 1,4x dan Insertion Sort naik 1,5x dari kondisi acak[cite: 16]. <strong>Selection Sort menjadi yang tercepat (51,87 ms)</strong> karena jumlah pertukarannya paling sedikit[cite: 16].</li>
+                </ul>
+            </div>
+
+            <h3>C. Jumlah Perbandingan Antar-Elemen pada n = 1.000 Data Acak (Tabel 4)</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Algoritma</th>
+                            <th>Jumlah Perbandingan Terukur</th>
+                            <th>Perkiraan Teoretis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Bubble Sort</td><td>498.834</td><td>Mendekati n(n−1)/2 = 499.500[cite: 16]</td></tr>
+                        <tr><td>Selection Sort</td><td>499.500</td><td>Tepat n(n−1)/2 = 499.500[cite: 16]</td></tr>
+                        <tr><td>Insertion Sort</td><td><span class="tag-fast">256.316</span></td><td>Sekitar n²/4 = 250.000[cite: 16]</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Meskipun jumlah perbandingan Bubble Sort (498.834) hampir identik dengan Selection Sort (499.500), Bubble Sort jauh lebih lambat karena melakukan sekitar ~250.000 operasi pertukaran elemen (inversi) pada data acak, sedangkan Selection Sort maksimal hanya melakukan 999 pertukaran[cite: 16].</p>
+        </section>
+
+        <!-- Bagian 2: Kesimpulan -->
+        <section class="card">
+            <h2>2. Kesimpulan Hasil Pengujian</h2>
+            <div class="conclusion-grid">
+                <div class="conclusion-item">
+                    <div class="conclusion-num">1</div>
+                    <h4>Pertumbuhan Kuadratik O(n²)</h4>
+                    <p>Pada data acak, waktu eksekusi ketiga algoritma tumbuh secara kuadratik[cite: 16]. Bubble Sort paling lambat (2,3–2,5x lebih lama dibanding Selection dan Insertion Sort)[cite: 16].</p>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-num">2</div>
+                    <h4>Keunggulan Linier pada Data Terurut</h4>
+                    <p>Pada data terurut, Bubble Sort (dengan penanda pertukaran) dan Insertion Sort berperilaku O(n) sehingga jauh lebih cepat, sedangkan Selection Sort tidak terpengaruh[cite: 16].</p>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-num">3</div>
+                    <h4>Selection Sort Unggul di Data Terbalik</h4>
+                    <p>Pada data terurut terbalik (worst case), Selection Sort menjadi algoritma tercepat karena meminimalkan operasi pertukaran antar-elemen[cite: 16].</p>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-num">4</div>
+                    <h4>Konsistensi dengan Analisis Teoretis</h4>
+                    <p>Jumlah perbandingan yang terukur konsisten dengan perkiraan teoretis, membuktikan pengukuran empiris valid untuk memverifikasi teori kompleksitas[cite: 16].</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Kelompok 26 - PELLINORE • Tugas Besar Fortran 2026 • Fakultas Informatika, Universitas Telkom[cite: 16]
+    </footer>
+
     <script>
-        const ctx = document.getElementById('sortingChart').getContext('2d');
-        const sortingChart = new Chart(ctx, {
+        Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+        
+        // Grafik 1
+        new Chart(document.getElementById('randomChart'), {
             type: 'line',
             data: {
                 labels: ['100', '500', '1.000', '2.500', '5.000'],
@@ -151,26 +191,27 @@
                     {
                         label: 'Bubble Sort',
                         data: [0.31, 6.39, 27.43, 193.64, 825.30],
-                        borderColor: '#e74c3c',
-                        backgroundColor: '#e74c3c',
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        fill: true,
                         tension: 0.3,
                         borderWidth: 3
                     },
                     {
                         label: 'Selection Sort',
                         data: [0.11, 3.04, 12.18, 83.29, 327.49],
-                        borderColor: '#2ecc71',
-                        backgroundColor: '#2ecc71',
-                        borderDash: [5, 5],
+                        borderColor: '#10b981',
+                        backgroundColor: '#10b981',
+                        borderDash: [6, 4],
                         tension: 0.3,
                         borderWidth: 3
                     },
                     {
                         label: 'Insertion Sort',
                         data: [0.10, 2.93, 11.80, 80.66, 352.91],
-                        borderColor: '#3498db',
-                        backgroundColor: '#3498db',
-                        borderDash: [2, 2],
+                        borderColor: '#3b82f6',
+                        backgroundColor: '#3b82f6',
+                        borderDash: [2, 3],
                         tension: 0.3,
                         borderWidth: 3
                     }
@@ -179,12 +220,34 @@
             options: {
                 responsive: true,
                 plugins: {
-                    legend: { position: 'top' },
+                    title: { display: true, text: 'Gambar 1. Waktu Eksekusi pada Data Acak (ms)', font: { size: 14, weight: 'bold' } },
                     tooltip: { mode: 'index', intersect: false }
                 },
                 scales: {
-                    x: { title: { display: true, text: 'Ukuran data (n)' } },
-                    y: { title: { display: true, text: 'Waktu eksekusi (ms)' }, beginAtZero: true }
+                    x: { title: { display: true, text: 'Ukuran Data (n)' } },
+                    y: { title: { display: true, text: 'Waktu Eksekusi (ms)' }, beginAtZero: true }
+                }
+            }
+        });
+
+        // Grafik 2
+        new Chart(document.getElementById('casesChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Terurut (Best Case)', 'Acak (Average Case)', 'Terbalik (Worst Case)'],
+                datasets: [
+                    { label: 'Bubble Sort', data: [0.07, 113.45, 157.24], backgroundColor: '#ef4444', borderRadius: 6 },
+                    { label: 'Selection Sort', data: [48.38, 46.81, 51.87], backgroundColor: '#10b981', borderRadius: 6 },
+                    { label: 'Insertion Sort', data: [0.12, 58.49, 89.16], backgroundColor: '#3b82f6', borderRadius: 6 }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Gambar 2. Perbandingan Waktu pada Berbagai Kondisi Data (n = 2.000)', font: { size: 14, weight: 'bold' } }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'Waktu Eksekusi (ms)' }, beginAtZero: true }
                 }
             }
         });
