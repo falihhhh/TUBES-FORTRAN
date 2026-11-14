@@ -9,9 +9,12 @@
 </head>
 <body>
 
+    <!-- Indikator Progres Scroll -->
+    <div id="scrollProgress" class="scroll-progress"></div>
+
     <!-- BAND 1: HERO SECTION (DARK) -->
     <header class="band-dark hero">
-        <div class="container animate-in">
+        <div class="container">
             <div class="hero-kicker">Kelompok 26 — Pellinore • Tugas Besar Fortran 2026</div>
             <h1>Analisis Perbandingan Kecepatan Algoritma Bubble Sort, Selection Sort, dan Insertion Sort pada Berbagai Ukuran dan Kondisi Data</h1>
             <div class="hero-actions">
@@ -23,8 +26,8 @@
 
     <!-- BAND 2: HASIL DATA ACAK (LIGHT) -->
     <section id="hasil-pengujian" class="band-light">
-        <div class="container animate-in">
-            <div class="section-header">
+        <div class="container">
+            <div class="section-header reveal">
                 <div class="section-kicker">Empirical Benchmark</div>
                 <div class="section-title-wrap">
                     <h2>Hasil Pengujian</h2>
@@ -34,19 +37,19 @@
 
             <!-- 3 Kartu Sorotan -->
             <div class="grid-3">
-                <div class="editorial-card">
+                <div class="editorial-card reveal delay-1">
                     <div class="card-kicker">Data Acak • n = 5.000</div>
                     <h3>Selection Tercepat</h3>
                     <div class="red-bar"></div>
                     <p>Mencatat waktu 327,49 ms — sekitar 2,5 kali lebih cepat dibanding Bubble Sort (825,30 ms).</p>
                 </div>
-                <div class="editorial-card">
+                <div class="editorial-card reveal delay-2">
                     <div class="card-kicker">Best Case • Terurut</div>
                     <h3>Perilaku Linier O(n)</h3>
                     <div class="red-bar"></div>
                     <p>Bubble Sort (dengan penanda) dan Insertion Sort selesai di bawah 0,2 ms, ribuan kali lebih cepat dari data acak.</p>
                 </div>
-                <div class="editorial-card">
+                <div class="editorial-card reveal delay-3">
                     <div class="card-kicker">Worst Case • Terbalik</div>
                     <h3>Minim Pertukaran</h3>
                     <div class="red-bar"></div>
@@ -55,8 +58,8 @@
             </div>
 
             <!-- Tabel 2 -->
-            <h3 class="sub-heading">A. Pengaruh Ukuran Data pada Data Acak (Tabel 2)</h3>
-            <div class="table-wrapper">
+            <h3 class="sub-heading reveal">A. Pengaruh Ukuran Data pada Data Acak (Tabel 2)</h3>
+            <div class="table-wrapper reveal">
                 <table>
                     <thead>
                         <tr>
@@ -76,11 +79,11 @@
                 </table>
             </div>
 
-            <div class="chart-box">
+            <div class="chart-box reveal">
                 <canvas id="randomChart"></canvas>
             </div>
 
-            <div class="analysis-note">
+            <div class="analysis-note reveal">
                 <strong>Analisis Pertumbuhan Waktu Eksekusi:</strong>
                 <ul>
                     <li><strong>Pertumbuhan Kuadratik O(n²):</strong> Ketika <i>n</i> naik 5 kali lipat (1.000 ke 5.000), waktu eksekusi melonjak 27–30 kali lipat (Bubble Sort 30,1x, Selection Sort 26,9x, Insertion Sort 29,9x), mendekati prediksi teoretis 5² = 25.</li>
@@ -94,7 +97,7 @@
     <!-- BAND 3: KONDISI DATA & PERBANDINGAN (DARK) -->
     <section class="band-dark">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-kicker">Data Sensitivity & Operations</div>
                 <div class="section-title-wrap">
                     <h2>Kondisi & Operasi Data</h2>
@@ -103,8 +106,8 @@
             </div>
 
             <!-- Tabel 3 -->
-            <h3 class="sub-heading">B. Pengaruh Kondisi Data pada n = 2.000 (Tabel 3)</h3>
-            <div class="table-wrapper">
+            <h3 class="sub-heading reveal">B. Pengaruh Kondisi Data pada n = 2.000 (Tabel 3)</h3>
+            <div class="table-wrapper reveal">
                 <table>
                     <thead>
                         <tr>
@@ -137,11 +140,11 @@
                 </table>
             </div>
 
-            <div class="chart-box">
+            <div class="chart-box reveal">
                 <canvas id="casesChart"></canvas>
             </div>
 
-            <div class="analysis-note">
+            <div class="analysis-note reveal">
                 <strong>Analisis Pengaruh Kondisi Data:</strong>
                 <ul>
                     <li><strong>Data Terurut:</strong> Bubble Sort (dengan penanda pertukaran) dan Insertion Sort selesai dalam &lt;0,2 ms karena berperilaku O(n) — lebih cepat &gt;1.600x dan ~500x dibanding data acak. Selection Sort tidak terpengaruh (48,38 ms).</li>
@@ -150,8 +153,8 @@
             </div>
 
             <!-- Tabel 4 -->
-            <h3 class="sub-heading">C. Jumlah Perbandingan Antar-Elemen pada n = 1.000 Data Acak (Tabel 4)</h3>
-            <div class="table-wrapper">
+            <h3 class="sub-heading reveal">C. Jumlah Perbandingan Antar-Elemen pada n = 1.000 Data Acak (Tabel 4)</h3>
+            <div class="table-wrapper reveal">
                 <table>
                     <thead>
                         <tr>
@@ -167,14 +170,14 @@
                     </tbody>
                 </table>
             </div>
-            <p class="section-desc" style="max-width: 100%; text-align: left;">Meskipun jumlah perbandingan Bubble Sort (498.834) hampir sama dengan Selection Sort (499.500), Bubble Sort jauh lebih lambat karena melakukan ~250.000 kali operasi pertukaran elemen (inversi) pada data acak, sedangkan Selection Sort maksimal hanya 999 pertukaran.</p>
+            <p class="section-desc reveal" style="max-width: 100%; text-align: left;">Meskipun jumlah perbandingan Bubble Sort (498.834) hampir sama dengan Selection Sort (499.500), Bubble Sort jauh lebih lambat karena melakukan ~250.000 kali operasi pertukaran elemen (inversi) pada data acak, sedangkan Selection Sort maksimal hanya 999 pertukaran.</p>
         </div>
     </section>
 
     <!-- BAND 4: FITUR INTERAKTIF "COBA SENDIRI" (LIGHT) -->
     <section id="coba-demo" class="band-light">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-kicker">Interactive Live Simulator</div>
                 <div class="section-title-wrap">
                     <h2>Coba Sendiri</h2>
@@ -182,7 +185,7 @@
                 <p class="section-desc">Masukkan angka atau buat data acak, lalu bandingkan ketiga algoritma langsung di browser. Waktu bergantung pada perangkatmu, jadi yang penting adalah perbandingan antar-algoritmanya.</p>
             </div>
 
-            <div class="demo-box">
+            <div class="demo-box reveal">
                 <!-- Input Angka Manual -->
                 <div class="demo-group">
                     <label class="demo-label" for="customNumbers">Angka sendiri (pisahkan dengan spasi atau koma)</label>
@@ -218,7 +221,7 @@
                     <div class="algo-row">
                         <div class="algo-name bubble">Bubble Sort</div>
                         <div>
-                            <div class="bar-track"><div id="bar-bubble" class="bar-fill bubble" style="width: 100%;"></div></div>
+                            <div class="bar-track"><div id="bar-bubble" class="bar-fill bubble" style="width: 0%;"></div></div>
                             <div id="meta-bubble" class="algo-meta">-</div>
                         </div>
                     </div>
@@ -226,7 +229,7 @@
                     <div class="algo-row">
                         <div class="algo-name selection">Selection Sort</div>
                         <div>
-                            <div class="bar-track"><div id="bar-selection" class="bar-fill selection" style="width: 70%;"></div></div>
+                            <div class="bar-track"><div id="bar-selection" class="bar-fill selection" style="width: 0%;"></div></div>
                             <div id="meta-selection" class="algo-meta">-</div>
                         </div>
                     </div>
@@ -234,7 +237,7 @@
                     <div class="algo-row">
                         <div class="algo-name insertion">Insertion Sort</div>
                         <div>
-                            <div class="bar-track"><div id="bar-insertion" class="bar-fill insertion" style="width: 35%;"></div></div>
+                            <div class="bar-track"><div id="bar-insertion" class="bar-fill insertion" style="width: 0%;"></div></div>
                             <div id="meta-insertion" class="algo-meta">-</div>
                         </div>
                     </div>
@@ -246,7 +249,7 @@
     <!-- BAND 5: KESIMPULAN (DARK) -->
     <section id="kesimpulan" class="band-dark">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-kicker">Final Synthesis</div>
                 <div class="section-title-wrap">
                     <h2>Kesimpulan Pengujian</h2>
@@ -254,25 +257,25 @@
             </div>
 
             <div class="conclusion-grid">
-                <div class="editorial-card">
+                <div class="editorial-card reveal delay-1">
                     <div class="card-kicker">Poin 01</div>
                     <h3>Pertumbuhan Kuadratik O(n²)</h3>
                     <div class="red-bar"></div>
                     <p>Pada data acak, waktu eksekusi ketiga algoritma tumbuh secara kuadratik terhadap ukuran data. Bubble Sort paling lambat, sekitar 2,3 sampai 2,5 kali lebih lama dibanding Selection Sort dan Insertion Sort.</p>
                 </div>
-                <div class="editorial-card">
+                <div class="editorial-card reveal delay-2">
                     <div class="card-kicker">Poin 02</div>
                     <h3>Sensitivitas Data Terurut</h3>
                     <div class="red-bar"></div>
                     <p>Kondisi data sangat memengaruhi kecepatan. Pada data terurut, Bubble Sort (dengan penanda pertukaran) dan Insertion Sort jauh lebih cepat karena berperilaku O(n), sedangkan Selection Sort tidak terpengaruh.</p>
                 </div>
-                <div class="editorial-card">
+                <div class="editorial-card reveal delay-3">
                     <div class="card-kicker">Poin 03</div>
                     <h3>Keunggulan di Data Terbalik</h3>
                     <div class="red-bar"></div>
                     <p>Pada data terurut terbalik (worst case), Selection Sort menjadi yang tercepat karena jumlah pertukarannya paling sedikit dibandingkan pergeseran dan pertukaran pada dua algoritma lainnya.</p>
                 </div>
-                <div class="editorial-card">
+                <div class="editorial-card reveal delay-4">
                     <div class="card-kicker">Poin 04</div>
                     <h3>Validasi Teori Empiris</h3>
                     <div class="red-bar"></div>
@@ -282,93 +285,132 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="reveal">
         Kelompok 26 — Pellinore • Tugas Besar Fortran 2026
     </footer>
 
     <script>
         Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
 
-        // Grafik 1
-        new Chart(document.getElementById('randomChart'), {
-            type: 'line',
-            data: {
-                labels: ['100', '500', '1.000', '2.500', '5.000'],
-                datasets: [
-                    {
-                        label: 'Bubble Sort',
-                        data: [0.31, 6.39, 27.43, 193.64, 825.30],
-                        borderColor: '#36444f',
-                        backgroundColor: 'rgba(54, 68, 79, 0.14)',
-                        fill: true,
-                        tension: 0.25,
-                        borderWidth: 3
+        // === 1. SCROLL PROGRESS BAR ===
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('scrollProgress').style.width = `${progress}%`;
+        });
+
+        // === 2. SCROLL REVEAL & ANIMASI GRAFIK SAAT TERLIHAT ===
+        let randomChartInit = false;
+        let casesChartInit = false;
+
+        function initRandomChart() {
+            if (randomChartInit) return;
+            randomChartInit = true;
+            new Chart(document.getElementById('randomChart'), {
+                type: 'line',
+                data: {
+                    labels: ['100', '500', '1.000', '2.500', '5.000'],
+                    datasets: [
+                        {
+                            label: 'Bubble Sort',
+                            data: [0.31, 6.39, 27.43, 193.64, 825.30],
+                            borderColor: '#36444f',
+                            backgroundColor: 'rgba(54, 68, 79, 0.14)',
+                            fill: true,
+                            tension: 0.25,
+                            borderWidth: 3
+                        },
+                        {
+                            label: 'Selection Sort',
+                            data: [0.11, 3.04, 12.18, 83.29, 327.49],
+                            borderColor: '#18181b',
+                            backgroundColor: '#18181b',
+                            borderDash: [6, 4],
+                            tension: 0.25,
+                            borderWidth: 2.5
+                        },
+                        {
+                            label: 'Insertion Sort',
+                            data: [0.10, 2.93, 11.80, 80.66, 352.91],
+                            borderColor: '#9ca3af',
+                            backgroundColor: '#9ca3af',
+                            borderDash: [2, 3],
+                            tension: 0.25,
+                            borderWidth: 2.5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    animation: {
+                        duration: 1200,
+                        easing: 'easeOutQuart'
                     },
-                    {
-                        label: 'Selection Sort',
-                        data: [0.11, 3.04, 12.18, 83.29, 327.49],
-                        borderColor: '#18181b',
-                        backgroundColor: '#18181b',
-                        borderDash: [6, 4],
-                        tension: 0.25,
-                        borderWidth: 2.5
+                    plugins: {
+                        title: { display: true, text: 'GAMBAR 1. WAKTU EKSEKUSI PADA DATA ACAK (MS)', color: '#18181b', font: { family: 'Montserrat', size: 13, weight: 'bold' } },
+                        tooltip: { mode: 'index', intersect: false }
                     },
-                    {
-                        label: 'Insertion Sort',
-                        data: [0.10, 2.93, 11.80, 80.66, 352.91],
-                        borderColor: '#9ca3af',
-                        backgroundColor: '#9ca3af',
-                        borderDash: [2, 3],
-                        tension: 0.25,
-                        borderWidth: 2.5
+                    scales: {
+                        x: { title: { display: true, text: 'Ukuran Data (n)', color: '#52525b' }, grid: { color: '#f4f4f5' } },
+                        y: { title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#52525b' }, grid: { color: '#f4f4f5' }, beginAtZero: true }
                     }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: 'GAMBAR 1. WAKTU EKSEKUSI PADA DATA ACAK (MS)', color: '#18181b', font: { family: 'Montserrat', size: 13, weight: 'bold' } },
-                    tooltip: { mode: 'index', intersect: false }
-                },
-                scales: {
-                    x: { title: { display: true, text: 'Ukuran Data (n)', color: '#52525b' }, grid: { color: '#f4f4f5' } },
-                    y: { title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#52525b' }, grid: { color: '#f4f4f5' }, beginAtZero: true }
                 }
-            }
-        });
+            });
+        }
 
-        // Grafik 2
-        new Chart(document.getElementById('casesChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Terurut (Best Case)', 'Acak (Average Case)', 'Terbalik (Worst Case)'],
-                datasets: [
-                    {
-                        label: 'Bubble Sort',
-                        data: [0.07, 113.45, 157.24],
-                        backgroundColor: '#36444f',
-                        borderColor: '#647d91',
-                        borderWidth: 1.5,
-                        borderRadius: 2
+        function initCasesChart() {
+            if (casesChartInit) return;
+            casesChartInit = true;
+            new Chart(document.getElementById('casesChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Terurut (Best Case)', 'Acak (Average Case)', 'Terbalik (Worst Case)'],
+                    datasets: [
+                        {
+                            label: 'Bubble Sort',
+                            data: [0.07, 113.45, 157.24],
+                            backgroundColor: '#36444f',
+                            borderColor: '#647d91',
+                            borderWidth: 1.5,
+                            borderRadius: 2
+                        },
+                        { label: 'Selection Sort', data: [48.38, 46.81, 51.87], backgroundColor: '#ffffff', borderRadius: 2 },
+                        { label: 'Insertion Sort', data: [0.12, 58.49, 89.16], backgroundColor: '#71717a', borderRadius: 2 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    animation: {
+                        duration: 1100,
+                        easing: 'easeOutQuart'
                     },
-                    { label: 'Selection Sort', data: [48.38, 46.81, 51.87], backgroundColor: '#ffffff', borderRadius: 2 },
-                    { label: 'Insertion Sort', data: [0.12, 58.49, 89.16], backgroundColor: '#71717a', borderRadius: 2 }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: 'GAMBAR 2. PERBANDINGAN WAKTU PADA BERBAGAI KONDISI DATA (N = 2.000)', color: '#ffffff', font: { family: 'Montserrat', size: 13, weight: 'bold' } },
-                    legend: { labels: { color: '#e4e4e7' } }
-                },
-                scales: {
-                    x: { ticks: { color: '#a1a1aa' }, grid: { color: '#32363a' } },
-                    y: { ticks: { color: '#a1a1aa' }, title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#a1a1aa' }, grid: { color: '#32363a' }, beginAtZero: true }
+                    plugins: {
+                        title: { display: true, text: 'GAMBAR 2. PERBANDINGAN WAKTU PADA BERBAGAI KONDISI DATA (N = 2.000)', color: '#ffffff', font: { family: 'Montserrat', size: 13, weight: 'bold' } },
+                        legend: { labels: { color: '#e4e4e7' } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#a1a1aa' }, grid: { color: '#32363a' } },
+                        y: { ticks: { color: '#a1a1aa' }, title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#a1a1aa' }, grid: { color: '#32363a' }, beginAtZero: true }
+                    }
                 }
-            }
-        });
+            });
+        }
 
-        // === LOGIKA SIMULATOR "COBA SENDIRI" ===
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    if (entry.target.querySelector('#randomChart')) initRandomChart();
+                    if (entry.target.querySelector('#casesChart')) initCasesChart();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.14 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // === 3. LOGIKA SIMULATOR "COBA SENDIRI" ===
         function runBubble(arr) {
             const a = arr.slice();
             let comp = 0, swaps = 0;
@@ -446,8 +488,12 @@
                 insertion: runInsertion(data)
             };
 
-            document.getElementById('demoStatus').textContent =
-                `${data.length.toLocaleString('id-ID')} angka berhasil diurutkan.`;
+            const statusEl = document.getElementById('demoStatus');
+            statusEl.style.opacity = '0.3';
+            setTimeout(() => {
+                statusEl.textContent = `${data.length.toLocaleString('id-ID')} angka berhasil diurutkan.`;
+                statusEl.style.opacity = '1';
+            }, 120);
 
             // Tentukan pemenang tercepat
             const times = [
@@ -464,12 +510,21 @@
 
             ['bubble', 'selection', 'insertion'].forEach(key => {
                 const item = res[key];
+                const barEl = document.getElementById(`bar-${key}`);
                 let pct = maxTime > 0.05
                     ? (item.time / maxTime) * 100
                     : (item.comp / maxComp) * 100;
                 pct = Math.max(pct, 6);
 
-                document.getElementById(`bar-${key}`).style.width = `${pct}%`;
+                // Reset bar ke 0 dulu agar animasi balapannya selalu terlihat saat tombol diklik
+                barEl.style.transition = 'none';
+                barEl.style.width = '0%';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        barEl.style.transition = 'width 0.75s cubic-bezier(0.22, 1, 0.36, 1)';
+                        barEl.style.width = `${pct}%`;
+                    });
+                });
 
                 const timeText = key === fastestKey
                     ? `<span class="fastest-badge">${formatMs(item.time)} • tercepat</span>`

@@ -34,11 +34,23 @@ body {
     overflow-x: hidden;
 }
 
-/* Animasi CSS Murni */
-@keyframes fadeUp {
+/* === SCROLL PROGRESS BAR DI ATAS LAYAR === */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light), #94a3b8);
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
+/* === KEYFRAMES ANIMASI === */
+@keyframes heroFadeUp {
     from {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(28px);
     }
     to {
         opacity: 1;
@@ -46,21 +58,62 @@ body {
     }
 }
 
-.animate-in {
-    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+@keyframes bgGridFloat {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 40px;
+    }
 }
+
+@keyframes barShimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.65;
+    }
+}
+
+/* === ANIMASI SCROLL REVEAL === */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
 
 /* Struktur Band Selang-Seling (Dark & Light) */
 .band-dark {
     background-color: var(--dark-bg);
     color: var(--text-white);
-    padding: 75px 20px;
+    padding: 80px 20px;
 }
 
 .band-light {
     background-color: var(--light-bg);
     color: var(--text-black);
-    padding: 75px 20px;
+    padding: 80px 20px;
 }
 
 .container {
@@ -68,11 +121,18 @@ body {
     margin: 0 auto;
 }
 
-/* 1. HERO SECTION (DARK) */
+/* 1. HERO SECTION (DARK + SUBTLE ANIMATED GRID) */
 .hero {
+    position: relative;
     text-align: center;
-    padding: 90px 20px 85px 20px;
+    padding: 100px 20px 95px 20px;
     border-bottom: 1px solid var(--border-dark);
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(92, 114, 133, 0.16) 0%, transparent 65%),
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    animation: bgGridFloat 18s linear infinite;
 }
 
 .hero-kicker {
@@ -82,7 +142,9 @@ body {
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--text-gray-light);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
 .hero h1 {
@@ -93,23 +155,28 @@ body {
     letter-spacing: 1px;
     line-height: 1.3;
     max-width: 850px;
-    margin: 0 auto 32px auto;
+    margin: 0 auto 36px auto;
+    opacity: 0;
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
 }
 
-/* Tombol Ganda di Hero ("Lihat Hasil" & "Coba Demo") */
+/* Tombol Ganda di Hero dengan Efek Shine Sweep */
 .hero-actions {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     flex-wrap: wrap;
+    opacity: 0;
+    animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.42s forwards;
 }
 
-.btn-red {
+.btn-red,
+.btn-outline,
+.btn-dark-solid {
+    position: relative;
+    overflow: hidden;
     display: inline-block;
-    background-color: var(--accent);
-    color: #ffffff;
-    border: 1px solid var(--accent-light);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
@@ -119,31 +186,57 @@ body {
     padding: 13px 28px;
     border-radius: 3px;
     cursor: pointer;
-    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease;
+}
+
+/* Kilau cahaya melintas saat tombol di-hover */
+.btn-red::after,
+.btn-outline::after,
+.btn-dark-solid::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.55s ease;
+}
+
+.btn-red:hover::after,
+.btn-outline:hover::after,
+.btn-dark-solid:hover::after {
+    left: 140%;
+}
+
+.btn-red {
+    background-color: var(--accent);
+    color: #ffffff;
+    border: 1px solid var(--accent-light);
 }
 
 .btn-red:hover {
     background-color: var(--accent-hover);
     border-color: #7a93a8;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(54, 68, 79, 0.55);
+    box-shadow: 0 10px 24px rgba(54, 68, 79, 0.55);
+}
+
+.btn-red:active,
+.btn-outline:active,
+.btn-dark-solid:active {
+    transform: translateY(0) scale(0.97);
 }
 
 .btn-outline {
-    display: inline-block;
     background-color: transparent;
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.35);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 13px 28px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .btn-outline:hover {
@@ -151,12 +244,13 @@ body {
     color: #18181b;
     border-color: #ffffff;
     transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(255, 255, 255, 0.15);
 }
 
-/* Heading Ala Editorial */
+/* Heading Ala Editorial dengan Garis Melebar */
 .section-header {
     text-align: center;
-    margin-bottom: 45px;
+    margin-bottom: 48px;
 }
 
 .section-kicker {
@@ -184,9 +278,15 @@ body {
 .section-title-wrap::after {
     content: "";
     height: 1px;
-    width: 70px;
+    width: 0px;
     background-color: currentColor;
-    opacity: 0.25;
+    opacity: 0.3;
+    transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.section-header.is-visible .section-title-wrap::before,
+.section-header.is-visible .section-title-wrap::after {
+    width: 75px;
 }
 
 .section-header h2 {
@@ -217,10 +317,13 @@ body {
 }
 
 .editorial-card {
-    padding: 24px;
+    padding: 26px;
     border: 1px solid var(--border-light);
     background: var(--light-card);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    border-radius: 3px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
 }
 
 .band-dark .editorial-card {
@@ -229,12 +332,14 @@ body {
 }
 
 .editorial-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-7px);
     border-color: var(--accent);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
 }
 
 .band-dark .editorial-card:hover {
     border-color: var(--accent-light);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
 }
 
 .card-kicker {
@@ -260,7 +365,7 @@ body {
     height: 3px;
     background-color: var(--accent);
     margin-bottom: 14px;
-    transition: width 0.3s ease;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .band-dark .red-bar {
@@ -268,7 +373,7 @@ body {
 }
 
 .editorial-card:hover .red-bar {
-    width: 60px;
+    width: 72px;
 }
 
 .editorial-card p {
@@ -277,7 +382,7 @@ body {
     opacity: 0.85;
 }
 
-/* Tabel Monokrom Minimalis */
+/* Tabel Monokrom Minimalis dengan Animasi Hover Baris */
 .sub-heading {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.05rem;
@@ -291,6 +396,7 @@ body {
     overflow-x: auto;
     margin-bottom: 28px;
     border: 1px solid var(--border-light);
+    border-radius: 3px;
 }
 
 .band-dark .table-wrapper {
@@ -323,6 +429,7 @@ td {
     padding: 13px 16px;
     text-align: center;
     border-bottom: 1px solid var(--border-light);
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .band-dark td {
@@ -334,16 +441,24 @@ th:first-child, td:first-child {
     font-weight: 600;
 }
 
-tr {
+tbody tr {
     transition: background-color 0.2s ease;
 }
 
-.band-light tr:hover td {
-    background-color: #f4f4f5;
+.band-light tbody tr:hover td {
+    background-color: #f1f5f9;
 }
 
-.band-dark tr:hover td {
-    background-color: #24272a;
+.band-light tbody tr:hover td:first-child {
+    transform: translateX(4px);
+}
+
+.band-dark tbody tr:hover td {
+    background-color: #282c30;
+}
+
+.band-dark tbody tr:hover td:first-child {
+    transform: translateX(4px);
 }
 
 .mono-bold {
@@ -368,6 +483,12 @@ tr {
     border: 1px solid var(--border-light);
     background: #ffffff;
     margin: 24px 0;
+    border-radius: 3px;
+    transition: box-shadow 0.3s ease;
+}
+
+.chart-box:hover {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
 }
 
 .band-dark .chart-box {
@@ -378,10 +499,16 @@ tr {
 /* Box Analisis Editorial */
 .analysis-note {
     border-left: 3px solid var(--accent);
-    padding: 14px 20px;
+    padding: 16px 22px;
     margin: 20px 0;
     background: rgba(128, 128, 128, 0.06);
     font-size: 0.92rem;
+    transition: border-left-width 0.25s ease, background-color 0.25s ease;
+}
+
+.analysis-note:hover {
+    border-left-width: 6px;
+    background: rgba(128, 128, 128, 0.1);
 }
 
 .band-dark .analysis-note {
@@ -397,12 +524,13 @@ tr {
     margin-bottom: 6px;
 }
 
-/* FITUR INTERAKTIF: COBA SENDIRI (MONOCHROME + #36444f) */
+/* FITUR INTERAKTIF: COBA SENDIRI */
 .demo-box {
     background: var(--light-card);
     border: 1px solid var(--border-light);
     padding: 32px;
     border-radius: 4px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
 }
 
 .demo-group {
@@ -431,7 +559,7 @@ tr {
     background: #ffffff;
     border: 1px solid #d4d4d8;
     border-radius: 3px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .demo-textarea:focus,
@@ -439,7 +567,7 @@ tr {
 .demo-select:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(54, 68, 79, 0.14);
+    box-shadow: 0 0 0 3px rgba(54, 68, 79, 0.15);
 }
 
 .demo-textarea {
@@ -460,20 +588,14 @@ tr {
     background-color: #18181b;
     color: #ffffff;
     border: 1px solid #18181b;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
     letter-spacing: 1.5px;
-    text-transform: uppercase;
     padding: 13px 24px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.25s ease, transform 0.2s ease;
 }
 
 .btn-dark-solid:hover {
     background-color: #3f3f46;
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(24, 24, 27, 0.25);
 }
 
 .demo-status {
@@ -481,12 +603,13 @@ tr {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-gray-dark);
+    transition: opacity 0.3s ease;
 }
 
 .demo-results {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
 }
 
 .algo-row {
@@ -494,6 +617,13 @@ tr {
     grid-template-columns: 150px 1fr;
     gap: 16px;
     align-items: start;
+    padding: 10px 12px;
+    border-radius: 4px;
+    transition: background-color 0.25s ease;
+}
+
+.algo-row:hover {
+    background-color: rgba(54, 68, 79, 0.04);
 }
 
 .algo-name {
@@ -511,17 +641,31 @@ tr {
 
 .bar-track {
     width: 100%;
-    height: 12px;
+    height: 13px;
     background-color: #e4e4e7;
     border-radius: 999px;
     overflow: hidden;
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 }
 
 .bar-fill {
+    position: relative;
     height: 100%;
     border-radius: 999px;
-    transition: width 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Efek kilau halus bergerak di dalam bar simulator */
+.bar-fill::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    animation: barShimmer 2.2s infinite;
 }
 
 .bar-fill.bubble { background-color: var(--accent); }
@@ -536,6 +680,7 @@ tr {
 .fastest-badge {
     color: var(--accent);
     font-weight: 800;
+    animation: badgePulse 1.8s ease-in-out infinite;
 }
 
 /* Kesimpulan Grid */
@@ -549,7 +694,7 @@ footer {
     background-color: #121315;
     color: var(--text-gray-light);
     text-align: center;
-    padding: 30px 20px;
+    padding: 32px 20px;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     letter-spacing: 2px;
@@ -559,7 +704,8 @@ footer {
 
 @media (max-width: 720px) {
     .hero h1 { font-size: 1.5rem; }
-    .section-title-wrap::before, .section-title-wrap::after { width: 25px; }
+    .section-header.is-visible .section-title-wrap::before,
+    .section-header.is-visible .section-title-wrap::after { width: 25px; }
     .demo-row { grid-template-columns: 1fr; }
     .algo-row { grid-template-columns: 1fr; gap: 6px; }
     .conclusion-grid { grid-template-columns: 1fr; }
