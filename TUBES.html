@@ -12,60 +12,14 @@
     <!-- Indikator Progres Scroll -->
     <div id="scrollProgress" class="scroll-progress"></div>
 
-    <!-- BAND 1: HERO SECTION (RATA KIRI + TEKS BESAR + DIAGRAM HITAM-PUTIH TRANSPARAN) -->
+    <!-- BAND 1: HERO SECTION (CHARCOAL GREY + FOTO ALGORITHM TANPA BACKGROUND PUTIH) -->
     <header class="hero">
-        <!-- Diagram Perbandingan Kondisi Data Hitam-Putih di Latar Belakang -->
+        <!-- Foto Algorithm Transparan di Sisi Kanan -->
         <div class="hero-bg-visual" aria-hidden="true">
-            <svg viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Garis Grid Horizontal & Vertikal -->
-                <g stroke="#ffffff" stroke-opacity="0.22" stroke-width="1">
-                    <line x1="120" y1="55" x2="1150" y2="55" />
-                    <line x1="120" y1="110" x2="1150" y2="110" />
-                    <line x1="120" y1="165" x2="1150" y2="165" />
-                    <line x1="120" y1="220" x2="1150" y2="220" />
-                    <line x1="120" y1="275" x2="1150" y2="275" />
-                    <line x1="120" y1="330" x2="1150" y2="330" />
-                    <line x1="120" y1="385" x2="1150" y2="385" />
-                    <line x1="120" y1="440" x2="1150" y2="440" />
-                    <line x1="120" y1="495" x2="1150" y2="495" stroke-opacity="0.4" stroke-width="1.5" />
-
-                    <line x1="140" y1="40" x2="140" y2="495" />
-                    <line x1="470" y1="40" x2="470" y2="495" />
-                    <line x1="800" y1="40" x2="800" y2="495" />
-                    <line x1="1130" y1="40" x2="1130" y2="495" />
-                </g>
-
-                <!-- Kelompok 1: Terurut (Best Case) -->
-                <g>
-                    <rect x="182" y="491" width="74" height="4" rx="2" fill="#27272a" stroke="#8e8e93" stroke-width="1.2" />
-                    <rect x="268" y="348" width="74" height="147" rx="3" fill="#ffffff" />
-                    <rect x="354" y="491" width="74" height="4" rx="2" fill="#71717a" />
-                </g>
-
-                <!-- Kelompok 2: Acak (Average Case) -->
-                <g>
-                    <rect x="512" y="152" width="74" height="343" rx="3" fill="#27272a" stroke="#a1a1aa" stroke-width="1.5" />
-                    <rect x="598" y="353" width="74" height="142" rx="3" fill="#ffffff" />
-                    <rect x="684" y="317" width="74" height="178" rx="3" fill="#71717a" />
-                </g>
-
-                <!-- Kelompok 3: Terbalik (Worst Case) -->
-                <g>
-                    <rect x="842" y="28" width="74" height="467" rx="3" fill="#27272a" stroke="#a1a1aa" stroke-width="1.5" />
-                    <rect x="928" y="338" width="74" height="157" rx="3" fill="#ffffff" />
-                    <rect x="1014" y="225" width="74" height="270" rx="3" fill="#71717a" />
-                </g>
-
-                <!-- Label Sumbu X Diagram -->
-                <g fill="#d4d4d8" font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="600" text-anchor="middle">
-                    <text x="305" y="526">Terurut (Best Case)</text>
-                    <text x="635" y="526">Acak (Average Case)</text>
-                    <text x="965" y="526">Terbalik (Worst Case)</text>
-                </g>
-            </svg>
+            <img src="algorithm-transparent.png" alt="" class="hero-algo-img">
         </div>
 
-        <!-- Overlay Transparan Lembut -->
+        <!-- Overlay Charcoal Lembut agar Teks Kontras -->
         <div class="hero-overlay"></div>
 
         <!-- Konten Judul Rata Kiri -->
@@ -555,7 +509,6 @@
                 statusEl.style.opacity = '1';
             }, 120);
 
-            // Tentukan pemenang tercepat
             const times = [
                 { key: 'bubble', val: res.bubble.time },
                 { key: 'selection', val: res.selection.time },
@@ -564,7 +517,6 @@
             times.sort((a, b) => a.val - b.val);
             const fastestKey = times[0].key;
 
-            // Skala lebar bar
             const maxTime = Math.max(res.bubble.time, res.selection.time, res.insertion.time);
             const maxComp = Math.max(res.bubble.comp, res.selection.comp, res.insertion.comp, 1);
 
@@ -626,7 +578,6 @@
             executeBenchmark(data);
         }
 
-        // Jalankan simulasi awal otomatis saat halaman dimuat
         window.addEventListener('DOMContentLoaded', compareGenerated);
     </script>
 </body>
