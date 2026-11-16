@@ -12,14 +12,87 @@
     <!-- Indikator Progres Scroll -->
     <div id="scrollProgress" class="scroll-progress"></div>
 
-    <!-- BAND 1: HERO SECTION (DARK) -->
-    <header class="band-dark hero">
+    <!-- BAND 1: HERO SECTION (RATA KIRI + OVERLAY TRANSPARAN + DIAGRAM GRAFIK SORTING) -->
+    <header class="hero">
+        <!-- Visual Grafik Kompleksitas & Diagram Array Sorting di Latar Belakang -->
+        <div class="hero-bg-visual" aria-hidden="true">
+            <svg viewBox="0 0 900 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid Koordinat Grafik -->
+                <g stroke="#ffffff" stroke-opacity="0.14" stroke-width="1">
+                    <line x1="160" y1="60" x2="160" y2="450" />
+                    <line x1="320" y1="60" x2="320" y2="450" />
+                    <line x1="480" y1="60" x2="480" y2="450" />
+                    <line x1="640" y1="60" x2="640" y2="450" />
+                    <line x1="800" y1="60" x2="800" y2="450" />
+
+                    <line x1="120" y1="110" x2="850" y2="110" />
+                    <line x1="120" y1="195" x2="850" y2="195" />
+                    <line x1="120" y1="280" x2="850" y2="280" />
+                    <line x1="120" y1="365" x2="850" y2="365" />
+                    <line x1="120" y1="450" x2="850" y2="450" stroke-opacity="0.35" stroke-width="1.5" />
+                </g>
+
+                <!-- Diagram Batang Array Terurut (Visualisasi Sorting di Sisi Kanan) -->
+                <g fill="#ffffff" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1">
+                    <rect x="430" y="395" width="24" height="55" rx="2" />
+                    <rect x="464" y="365" width="24" height="85" rx="2" />
+                    <rect x="498" y="330" width="24" height="120" rx="2" />
+                    <rect x="532" y="295" width="24" height="155" rx="2" fill-opacity="0.24" />
+                    <rect x="566" y="255" width="24" height="195" rx="2" />
+                    <rect x="600" y="210" width="24" height="240" rx="2" />
+                    <rect x="634" y="170" width="24" height="280" rx="2" fill-opacity="0.26" />
+                    <rect x="668" y="130" width="24" height="320" rx="2" />
+                    <rect x="702" y="95" width="24" height="355" rx="2" />
+                    <rect x="736" y="70" width="24" height="380" rx="2" fill-opacity="0.22" />
+                </g>
+
+                <!-- Busur Pertukaran Elemen (Swap Arcs) -->
+                <path d="M544 285 Q 594 220 646 160" stroke="#ffffff" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="5 5" fill="none" />
+                <path d="M646 160 Q 698 105 748 62" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+
+                <!-- Kurva Kuadratik O(n^2) Bubble Sort -->
+                <path d="M160 448 C 340 442, 540 360, 810 72" stroke="#ffffff" stroke-opacity="0.7" stroke-width="3" fill="none" />
+                <!-- Kurva Selection Sort -->
+                <path class="hero-curve-dashed" d="M160 449 C 360 446, 580 400, 810 245" stroke="#d4d4d8" stroke-opacity="0.6" stroke-width="2.5" fill="none" />
+                <!-- Kurva Insertion Sort -->
+                <path d="M160 449 C 360 446, 590 392, 810 228" stroke="#a1a1aa" stroke-opacity="0.55" stroke-width="2" fill="none" />
+
+                <!-- Titik Data Pengukuran (n = 100 s.d. 5.000) -->
+                <g fill="#ffffff">
+                    <circle cx="160" cy="448" r="4" fill-opacity="0.8" />
+                    <circle cx="320" cy="435" r="4.5" fill-opacity="0.8" />
+                    <circle cx="480" cy="390" r="5" fill-opacity="0.85" />
+                    <circle cx="640" cy="272" r="5.5" fill-opacity="0.9" />
+                    <circle cx="810" cy="72" r="6.5" fill-opacity="0.95" />
+                </g>
+
+                <!-- Label Teknis Diagram -->
+                <g fill="#ffffff" fill-opacity="0.5" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">
+                    <text x="720" y="54">O(n²) BUBBLE</text>
+                    <text x="695" y="216">INSERTION</text>
+                    <text x="695" y="264">SELECTION</text>
+                    <text x="160" y="472">n = 100</text>
+                    <text x="462" y="472">n = 1.000</text>
+                    <text x="765" y="472">n = 5.000</text>
+                </g>
+            </svg>
+        </div>
+
+        <!-- Overlay Gelap Transparan -->
+        <div class="hero-overlay"></div>
+
+        <!-- Konten Judul Rata Kiri -->
         <div class="container">
-            <div class="hero-kicker">Kelompok 26 — Pellinore • Tugas Besar Fortran 2026</div>
-            <h1>Analisis Perbandingan Kecepatan Algoritma Bubble Sort, Selection Sort, dan Insertion Sort pada Berbagai Ukuran dan Kondisi Data</h1>
-            <div class="hero-actions">
-                <a href="#hasil-pengujian" class="btn-red">Lihat Hasil</a>
-                <a href="#coba-demo" class="btn-outline">Coba Demo</a>
+            <div class="hero-content">
+                <div class="hero-kicker">Kelompok 26 — Pellinore • Tugas Besar Fortran 2026</div>
+                <h1>Analisis Perbandingan Kecepatan Algoritma Sorting.</h1>
+                <p class="hero-subtitle">
+                    <strong>Bubble Sort, Selection Sort, dan Insertion Sort</strong> diuji secara empiris pada berbagai ukuran data (<em>n</em> = 100 hingga 5.000) dan kondisi urutan masukan untuk memvalidasi perilaku kompleksitas waktu <em>O(n²)</em> dan <em>O(n)</em>.
+                </p>
+                <div class="hero-actions">
+                    <a href="#hasil-pengujian" class="btn-red">Lihat Hasil</a>
+                    <a href="#coba-demo" class="btn-outline">Coba Demo</a>
+                </div>
             </div>
         </div>
     </header>
@@ -516,7 +589,6 @@
                     : (item.comp / maxComp) * 100;
                 pct = Math.max(pct, 6);
 
-                // Reset bar ke 0 dulu agar animasi balapannya selalu terlihat saat tombol diklik
                 barEl.style.transition = 'none';
                 barEl.style.width = '0%';
                 requestAnimationFrame(() => {
