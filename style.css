@@ -162,14 +162,14 @@ body {
     margin: 0 auto;
 }
 
-/* 1. HERO SECTION (2 KOLOM: JUDUL KIRI + ANIMASI BESAR LEBIH KANAN) */
+/* 1. HERO SECTION (2 KOLOM: JUDUL KIRI + ANIMASI AGAK BESAR & LEBIH ATAS DI KANAN) */
 .hero {
     position: relative;
-    min-height: 590px;
+    min-height: 575px;
     display: flex;
     align-items: center;
     text-align: left;
-    padding: 100px 24px;
+    padding: 84px 24px 96px 24px;
     background-color: var(--dark-bg);
     border-bottom: 1px solid var(--border-dark);
     overflow: hidden;
@@ -184,13 +184,14 @@ body {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1fr 1.05fr;
-    gap: 48px;
-    align-items: center;
+    grid-template-columns: 0.96fr 1.04fr;
+    gap: 44px;
+    align-items: start;
 }
 
 .hero-content {
-    max-width: 550px;
+    max-width: 540px;
+    padding-top: 28px;
 }
 
 .hero h1 {
@@ -222,15 +223,16 @@ body {
     padding: 14px 28px;
 }
 
-/* === STAGE ANIMASI (LEBIH KANAN & LEBIH BESAR) === */
+/* === STAGE ANIMASI (AGAK BESAR & POSISI LEBIH ATAS) === */
 .hero-stage {
     position: relative;
     min-height: 365px;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
-    padding-right: 52px;
+    padding-right: 54px;
+    margin-top: -18px;
     opacity: 0;
     animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
@@ -238,14 +240,14 @@ body {
 /* Kartu Canvas dengan Bingkai Seleksi Biru */
 .canvas-select-card {
     position: absolute;
-    right: -12px;
-    bottom: 6px;
-    width: 268px;
-    height: 202px;
+    right: -10px;
+    bottom: 28px;
+    width: 288px;
+    height: 218px;
     background: #141618;
     border: 1.5px solid #3b82f6;
     border-radius: 5px;
-    padding: 18px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -271,8 +273,8 @@ body {
 .mini-bars {
     display: flex;
     align-items: flex-end;
-    gap: 12px;
-    height: 102px;
+    gap: 13px;
+    height: 112px;
     padding: 10px 12px 0 12px;
     border-bottom: 1px solid #2b2f34;
 }
@@ -288,7 +290,7 @@ body {
 
 .canvas-tag {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.74rem;
+    font-size: 0.76rem;
     color: #93c5fd;
     letter-spacing: 0.5px;
     text-align: right;
@@ -297,8 +299,8 @@ body {
 /* Kursor Melayang dengan Label "Pellinore" */
 .floating-cursor {
     position: absolute;
-    right: 22px;
-    bottom: 28px;
+    right: 26px;
+    bottom: 50px;
     z-index: 4;
     pointer-events: none;
     animation: cursorGlide 5.5s ease-in-out infinite;
@@ -311,19 +313,19 @@ body {
     background: #d97757;
     color: #ffffff;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    padding: 4px 11px;
+    padding: 4px 12px;
     border-radius: 999px;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
 }
 
-/* Jendela Terminal Utama (Diperbesar) */
+/* Jendela Terminal Utama (Agak Besar) */
 .terminal-window {
     position: relative;
     z-index: 3;
     width: 100%;
-    max-width: 430px;
+    max-width: 465px;
     background: #121315;
     border: 1px solid #2f3338;
     border-radius: 12px;
@@ -336,7 +338,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 13px 18px;
     background: #181a1d;
     border-bottom: 1px solid #272a2f;
 }
@@ -359,17 +361,17 @@ body {
 
 .terminal-title {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     color: #8e9299;
     font-weight: 500;
 }
 
 .terminal-body {
-    padding: 22px 24px 28px 24px;
+    padding: 24px 26px 30px 26px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.96rem;
-    line-height: 1.85;
-    min-height: 196px;
+    font-size: 1.02rem;
+    line-height: 1.88;
+    min-height: 212px;
 }
 
 .term-line {
@@ -393,7 +395,7 @@ body {
 .term-cursor {
     display: inline-block;
     width: 8px;
-    height: 18px;
+    height: 19px;
     background-color: #ffffff;
     margin-left: 2px;
     animation: blinkCursor 0.85s infinite;
@@ -404,7 +406,7 @@ body {
     opacity: 0;
     transform: translateY(6px);
     transition: opacity 0.45s ease, transform 0.45s ease;
-    font-size: 0.92rem;
+    font-size: 0.98rem;
 }
 
 .term-sub.show {
@@ -414,7 +416,7 @@ body {
 
 .term-star {
     color: #a78bfa;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
 }
 
 .term-line-2 .term-text { color: #e4e4e7; font-weight: 600; }
@@ -954,10 +956,12 @@ footer {
 @media (max-width: 960px) {
     .hero { min-height: auto; padding: 75px 20px; }
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-content { padding-top: 0; }
     .hero h1 { font-size: 1.75rem; }
-    .hero-stage { min-height: 290px; justify-content: flex-start; padding-right: 24px; }
-    .terminal-window { max-width: 390px; }
-    .canvas-select-card { right: 0; width: 220px; height: 165px; }
+    .hero-stage { min-height: 300px; justify-content: flex-start; padding-right: 24px; margin-top: 0; }
+    .terminal-window { max-width: 400px; }
+    .canvas-select-card { right: 0; bottom: 16px; width: 225px; height: 170px; }
+    .floating-cursor { right: 22px; bottom: 34px; }
     .section-header.is-visible .section-title-wrap::before,
     .section-header.is-visible .section-title-wrap::after { width: 25px; }
     .demo-row { grid-template-columns: 1fr; }
