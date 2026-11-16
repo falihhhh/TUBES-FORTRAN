@@ -162,14 +162,14 @@ body {
     margin: 0 auto;
 }
 
-/* 1. HERO SECTION (2 KOLOM: JUDUL KIRI + ANIMASI SEJAJAR ATAS DI KANAN) */
+/* 1. HERO SECTION (2 KOLOM: JUDUL KIRI + ANIMASI 5 BARIS LEBIH KANAN DI KANAN) */
 .hero {
     position: relative;
-    min-height: 560px;
+    min-height: 575px;
     display: flex;
     align-items: center;
     text-align: left;
-    padding: 96px 24px;
+    padding: 96px 28px;
     background-color: var(--dark-bg);
     border-bottom: 1px solid var(--border-dark);
     overflow: hidden;
@@ -179,13 +179,13 @@ body {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 1160px;
+    max-width: 1220px;
 }
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 0.96fr 1.04fr;
-    gap: 44px;
+    grid-template-columns: 0.94fr 1.06fr;
+    gap: 48px;
     align-items: start;
 }
 
@@ -223,15 +223,15 @@ body {
     padding: 14px 28px;
 }
 
-/* === STAGE ANIMASI (BAGIAN ATAS SEJAJAR DENGAN JUDUL) === */
+/* === STAGE ANIMASI (AGAK KE KANAN & SEJAJAR ATAS DENGAN JUDUL) === */
 .hero-stage {
     position: relative;
-    min-height: 332px;
+    min-height: 360px;
     width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-    padding-right: 54px;
+    padding-right: 32px;
     margin-top: 4px;
     opacity: 0;
     animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
@@ -240,7 +240,7 @@ body {
 /* Kartu Canvas dengan Bingkai Seleksi Biru */
 .canvas-select-card {
     position: absolute;
-    right: -10px;
+    right: -18px;
     bottom: 6px;
     width: 288px;
     height: 218px;
@@ -299,7 +299,7 @@ body {
 /* Kursor Melayang dengan Label "Pellinore" */
 .floating-cursor {
     position: absolute;
-    right: 26px;
+    right: 16px;
     bottom: 28px;
     z-index: 4;
     pointer-events: none;
@@ -320,7 +320,7 @@ body {
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
 }
 
-/* Jendela Terminal Utama */
+/* Jendela Terminal Utama (5 Baris Teks) */
 .terminal-window {
     position: relative;
     z-index: 3;
@@ -367,11 +367,11 @@ body {
 }
 
 .terminal-body {
-    padding: 24px 26px 30px 26px;
+    padding: 22px 26px 28px 26px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.02rem;
-    line-height: 1.88;
-    min-height: 212px;
+    line-height: 1.82;
+    min-height: 238px;
 }
 
 .term-line {
@@ -381,7 +381,7 @@ body {
     white-space: nowrap;
 }
 
-/* Baris 1: "halo" */
+/* Baris 1: "hallo." */
 .term-line-1 {
     color: #ffffff;
     font-weight: 600;
@@ -401,12 +401,12 @@ body {
     animation: blinkCursor 0.85s infinite;
 }
 
-/* Baris 2, 3, 4 */
+/* Baris 2, 3, 4, 5 */
 .term-sub {
     opacity: 0;
     transform: translateY(6px);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-    font-size: 0.98rem;
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    font-size: 0.96rem;
 }
 
 .term-sub.show {
@@ -416,12 +416,13 @@ body {
 
 .term-star {
     color: #a78bfa;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
 }
 
-.term-line-2 .term-text { color: #e4e4e7; font-weight: 600; }
-.term-line-3 .term-text { color: #93c5fd; }
-.term-line-4 .term-text { color: #a1a1aa; }
+.term-line-2 .term-text { color: #cbd5e1; }
+.term-line-3 .term-text { color: #ffffff; font-weight: 600; }
+.term-line-4 .term-text { color: #93c5fd; }
+.term-line-5 .term-text { color: #a1a1aa; }
 
 .btn-red,
 .btn-outline,
@@ -958,7 +959,7 @@ footer {
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
     .hero-content { padding-top: 0; }
     .hero h1 { font-size: 1.75rem; }
-    .hero-stage { min-height: 300px; justify-content: flex-start; padding-right: 24px; margin-top: 0; }
+    .hero-stage { min-height: 320px; justify-content: flex-start; padding-right: 24px; margin-top: 0; }
     .terminal-window { max-width: 400px; }
     .canvas-select-card { right: 0; bottom: 16px; width: 225px; height: 170px; }
     .floating-cursor { right: 22px; bottom: 34px; }

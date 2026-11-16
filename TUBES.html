@@ -12,7 +12,7 @@
     <!-- Indikator Progres Scroll -->
     <div id="scrollProgress" class="scroll-progress"></div>
 
-    <!-- BAND 1: HERO SECTION (JUDUL KIRI + ANIMASI SEJAJAR ATAS DI KANAN) -->
+    <!-- BAND 1: HERO SECTION (JUDUL KIRI + ANIMASI TERMINAL 5 BARIS DI KANAN) -->
     <header class="hero">
         <div class="container">
             <div class="hero-grid">
@@ -44,13 +44,17 @@
                             </div>
                             <div id="termLine2" class="term-line term-sub term-line-2">
                                 <span class="term-star">✳</span>
-                                <span class="term-text">Kelompok 26 — Pellinore</span>
+                                <span class="term-text">kami dari</span>
                             </div>
                             <div id="termLine3" class="term-line term-sub term-line-3">
                                 <span class="term-star">✳</span>
-                                <span class="term-text">Tugas Besar Fortran</span>
+                                <span class="term-text">Kelompok 26 — Pellinore</span>
                             </div>
                             <div id="termLine4" class="term-line term-sub term-line-4">
+                                <span class="term-star">✳</span>
+                                <span class="term-text">Tugas Besar Fortran</span>
+                            </div>
+                            <div id="termLine5" class="term-line term-sub term-line-5">
                                 <span class="term-star">✳</span>
                                 <span class="term-text">2026</span>
                             </div>
@@ -351,15 +355,16 @@
     <script>
         Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
 
-        // === 0. ANIMASI KETIK & MUNCUL BERURUTAN DI TERMINAL HERO ===
+        // === 0. ANIMASI KETIK & MUNCUL BERURUTAN (5 BARIS, TEMPO AGAK LAMBAT) ===
         function startTerminalAnimation() {
             const greetingEl = document.getElementById('typedGreeting');
             const lines = [
                 document.getElementById('termLine2'),
                 document.getElementById('termLine3'),
-                document.getElementById('termLine4')
+                document.getElementById('termLine4'),
+                document.getElementById('termLine5')
             ];
-            const word = 'halo';
+            const word = 'hallo.';
 
             function runCycle() {
                 greetingEl.textContent = '';
@@ -371,12 +376,13 @@
                     idx++;
                     if (idx >= word.length) {
                         clearInterval(typeTimer);
-                        setTimeout(() => lines[0].classList.add('show'), 320);
-                        setTimeout(() => lines[1].classList.add('show'), 680);
-                        setTimeout(() => lines[2].classList.add('show'), 1040);
-                        setTimeout(runCycle, 4600);
+                        setTimeout(() => lines[0].classList.add('show'), 450);
+                        setTimeout(() => lines[1].classList.add('show'), 970);
+                        setTimeout(() => lines[2].classList.add('show'), 1490);
+                        setTimeout(() => lines[3].classList.add('show'), 2010);
+                        setTimeout(runCycle, 6200);
                     }
-                }, 130);
+                }, 165);
             }
 
             runCycle();
