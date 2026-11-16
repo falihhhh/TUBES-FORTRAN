@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
     --dark-bg: #1b1d1f;
@@ -58,6 +58,56 @@ body {
     }
 }
 
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes windowFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes frameFloat {
+    0%, 100% {
+        transform: translate(0px, 0px);
+    }
+    50% {
+        transform: translate(4px, 6px);
+    }
+}
+
+@keyframes cursorGlide {
+    0%, 100% {
+        transform: translate(0px, 0px);
+    }
+    40% {
+        transform: translate(-18px, -14px);
+    }
+    70% {
+        transform: translate(-10px, -6px);
+    }
+}
+
+@keyframes blinkCursor {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
 @keyframes barShimmer {
     0% {
         transform: translateX(-100%);
@@ -108,18 +158,18 @@ body {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1040px;
     margin: 0 auto;
 }
 
-/* 1. HERO SECTION (WARNA #1b1d1f SERAGAM DENGAN BAND GELAP LAINNYA) */
+/* 1. HERO SECTION (2 KOLOM: JUDUL KIRI + ANIMASI TERMINAL & CANVAS KANAN) */
 .hero {
     position: relative;
-    min-height: 580px;
+    min-height: 560px;
     display: flex;
     align-items: center;
     text-align: left;
-    padding: 110px 20px 105px 20px;
+    padding: 96px 20px;
     background-color: var(--dark-bg);
     border-bottom: 1px solid var(--border-dark);
     overflow: hidden;
@@ -131,65 +181,242 @@ body {
     width: 100%;
 }
 
-.hero-content {
-    max-width: 760px;
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 44px;
+    align-items: center;
 }
 
-.hero-kicker {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.86rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--text-gray-light);
-    margin-bottom: 16px;
-    opacity: 0;
-    animation: heroFadeRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+.hero-content {
+    max-width: 580px;
 }
 
 .hero h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 3.15rem;
+    font-size: 2.1rem;
     font-weight: 800;
-    letter-spacing: -0.8px;
-    line-height: 1.16;
+    letter-spacing: -0.5px;
+    line-height: 1.24;
     color: #ffffff;
-    margin: 0 0 22px 0;
+    margin: 0 0 32px 0;
     opacity: 0;
-    animation: heroFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
+    animation: heroFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
 }
 
-.hero-subtitle {
-    font-size: 1.12rem;
-    line-height: 1.75;
-    color: #d4d4d8;
-    max-width: 670px;
-    margin-bottom: 36px;
-    opacity: 0;
-    animation: heroFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.34s forwards;
-}
-
-.hero-subtitle strong {
-    color: #ffffff;
-    font-weight: 700;
-}
-
-/* Tombol Ganda di Hero Rata Kiri dengan Efek Shine Sweep */
+/* Tombol Ganda di Hero Rata Kiri */
 .hero-actions {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
     opacity: 0;
-    animation: heroFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.46s forwards;
+    animation: heroFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.26s forwards;
 }
 
 .hero-actions .btn-red,
 .hero-actions .btn-outline {
-    font-size: 0.8rem;
-    padding: 15px 32px;
+    font-size: 0.76rem;
+    padding: 14px 28px;
 }
+
+/* === STAGE ANIMASI ALA VIDEO (TERMINAL + CANVAS SELECTION + CURSOR) === */
+.hero-stage {
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+/* Kartu Canvas dengan Bingkai Seleksi Biru (seperti di video) */
+.canvas-select-card {
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+    width: 225px;
+    height: 168px;
+    background: #141618;
+    border: 1.5px solid #3b82f6;
+    border-radius: 4px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    animation: frameFloat 6s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* 4 Titik Sudut Seleksi Biru */
+.sel-handle {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: #ffffff;
+    border: 1.5px solid #3b82f6;
+}
+.sel-handle.tl { top: -4px; left: -4px; }
+.sel-handle.tr { top: -4px; right: -4px; }
+.sel-handle.bl { bottom: -4px; left: -4px; }
+.sel-handle.br { bottom: -4px; right: -4px; }
+
+/* Mini Bar Visualisasi di dalam Kartu Canvas */
+.mini-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 82px;
+    padding: 8px 10px 0 10px;
+    border-bottom: 1px solid #2b2f34;
+}
+
+.mini-bar {
+    flex: 1;
+    border-radius: 3px 3px 0 0;
+    transition: height 0.6s ease;
+}
+.mini-bar.b1 { height: 78%; background: #36444f; border: 1px solid #647d91; }
+.mini-bar.b2 { height: 42%; background: #ffffff; }
+.mini-bar.b3 { height: 58%; background: #71717a; }
+
+.canvas-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    color: #93c5fd;
+    letter-spacing: 0.5px;
+    text-align: right;
+}
+
+/* Kursor Melayang dengan Label "Pellinore" */
+.floating-cursor {
+    position: absolute;
+    right: 26px;
+    bottom: 24px;
+    z-index: 4;
+    pointer-events: none;
+    animation: cursorGlide 5.5s ease-in-out infinite;
+}
+
+.cursor-pill {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: -4px;
+    background: #d97757;
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Jendela Terminal Utama (4 Baris Teks) */
+.terminal-window {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 355px;
+    background: #121315;
+    border: 1px solid #2f3338;
+    border-radius: 10px;
+    box-shadow: 0 24px 54px rgba(0, 0, 0, 0.65);
+    overflow: hidden;
+    animation: windowFloat 5.2s ease-in-out infinite;
+}
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #181a1d;
+    border-bottom: 1px solid #272a2f;
+}
+
+.terminal-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.terminal-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.terminal-dots .dot-red { background: #ff5f56; }
+.terminal-dots .dot-yellow { background: #ffbd2e; }
+.terminal-dots .dot-green { background: #27c93f; }
+
+.terminal-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #8e9299;
+    font-weight: 500;
+}
+
+.terminal-body {
+    padding: 18px 18px 22px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84rem;
+    line-height: 1.75;
+    min-height: 162px;
+}
+
+.term-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+/* Baris 1: "halo" */
+.term-line-1 {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.term-prompt {
+    color: #94a3b8;
+}
+
+.term-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    background-color: #ffffff;
+    margin-left: 2px;
+    animation: blinkCursor 0.85s infinite;
+}
+
+/* Baris 2, 3, 4 */
+.term-sub {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    font-size: 0.8rem;
+}
+
+.term-sub.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.term-star {
+    color: #a78bfa;
+    font-size: 0.75rem;
+}
+
+.term-line-2 .term-text { color: #e4e4e7; font-weight: 600; }
+.term-line-3 .term-text { color: #93c5fd; }
+.term-line-4 .term-text { color: #a1a1aa; }
 
 .btn-red,
 .btn-outline,
@@ -721,10 +948,13 @@ footer {
     border-top: 1px solid var(--border-dark);
 }
 
-@media (max-width: 768px) {
-    .hero { min-height: 480px; padding: 80px 20px; }
-    .hero h1 { font-size: 2.15rem; }
-    .hero-subtitle { font-size: 0.98rem; }
+@media (max-width: 880px) {
+    .hero { min-height: auto; padding: 75px 20px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .hero h1 { font-size: 1.75rem; }
+    .hero-stage { min-height: 250px; }
+    .terminal-window { max-width: 100%; }
+    .canvas-select-card { width: 190px; height: 145px; }
     .section-header.is-visible .section-title-wrap::before,
     .section-header.is-visible .section-title-wrap::after { width: 25px; }
     .demo-row { grid-template-columns: 1fr; }

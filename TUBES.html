@@ -12,18 +12,72 @@
     <!-- Indikator Progres Scroll -->
     <div id="scrollProgress" class="scroll-progress"></div>
 
-    <!-- BAND 1: HERO SECTION (WARNA #1b1d1f SERAGAM + TULISAN PEMBUKAAN) -->
+    <!-- BAND 1: HERO SECTION (JUDUL KIRI + ANIMASI TERMINAL & CANVAS SELECTION KANAN) -->
     <header class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-kicker">Kelompok 26 — Pellinore • Tugas Besar Fortran 2026</div>
-                <h1>Analisis Perbandingan Kecepatan Algoritma Sorting.</h1>
-                <p class="hero-subtitle">
-                    <strong>Bubble Sort, Selection Sort, dan Insertion Sort</strong> diuji secara empiris pada berbagai ukuran data (<em>n</em> = 100 hingga 5.000) dan kondisi urutan masukan untuk memvalidasi perilaku kompleksitas waktu <em>O(n²)</em> dan <em>O(n)</em>.
-                </p>
-                <div class="hero-actions">
-                    <a href="#hasil-pengujian" class="btn-red">Lihat Hasil</a>
-                    <a href="#coba-demo" class="btn-outline">Coba Demo</a>
+            <div class="hero-grid">
+                <!-- Kolom Kiri: Judul & Tombol -->
+                <div class="hero-content">
+                    <h1>Analisis Perbandingan Kecepatan Algoritma Bubble Sort, Selection Sort, dan Insertion Sort pada Berbagai Ukuran dan Kondisi Data</h1>
+                    <div class="hero-actions">
+                        <a href="#hasil-pengujian" class="btn-red">Lihat Hasil</a>
+                        <a href="#coba-demo" class="btn-outline">Coba Demo</a>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Animasi Floating Terminal + Selection Frame -->
+                <div class="hero-stage" aria-label="Animasi identitas kelompok">
+                    <!-- Jendela Terminal Utama -->
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="dot-red"></span>
+                                <span class="dot-yellow"></span>
+                                <span class="dot-green"></span>
+                            </div>
+                            <span class="terminal-title">pellinore — zsh</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="term-line term-line-1">
+                                <span class="term-prompt">&gt;</span>
+                                <span id="typedGreeting"></span><span class="term-cursor"></span>
+                            </div>
+                            <div id="termLine2" class="term-line term-sub term-line-2">
+                                <span class="term-star">✳</span>
+                                <span class="term-text">Kelompok 26 — Pellinore</span>
+                            </div>
+                            <div id="termLine3" class="term-line term-sub term-line-3">
+                                <span class="term-star">✳</span>
+                                <span class="term-text">Tugas Besar Fortran</span>
+                            </div>
+                            <div id="termLine4" class="term-line term-sub term-line-4">
+                                <span class="term-star">✳</span>
+                                <span class="term-text">2026</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kartu Canvas dengan Bingkai Seleksi Biru -->
+                    <div class="canvas-select-card" aria-hidden="true">
+                        <span class="sel-handle tl"></span>
+                        <span class="sel-handle tr"></span>
+                        <span class="sel-handle bl"></span>
+                        <span class="sel-handle br"></span>
+                        <div class="mini-bars">
+                            <div class="mini-bar b1"></div>
+                            <div class="mini-bar b2"></div>
+                            <div class="mini-bar b3"></div>
+                        </div>
+                        <div class="canvas-tag">O(n²) • O(n)</div>
+                    </div>
+
+                    <!-- Kursor Melayang -->
+                    <div class="floating-cursor" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#d97757" stroke="#ffffff" stroke-width="1.8">
+                            <path d="M4 3L20 11L12 13L9 21L4 3Z" />
+                        </svg>
+                        <div class="cursor-pill">Pellinore</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -297,6 +351,37 @@
     <script>
         Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
 
+        // === 0. ANIMASI KETIK & MUNCUL BERURUTAN DI TERMINAL HERO ===
+        function startTerminalAnimation() {
+            const greetingEl = document.getElementById('typedGreeting');
+            const lines = [
+                document.getElementById('termLine2'),
+                document.getElementById('termLine3'),
+                document.getElementById('termLine4')
+            ];
+            const word = 'halo';
+
+            function runCycle() {
+                greetingEl.textContent = '';
+                lines.forEach(el => el.classList.remove('show'));
+
+                let idx = 0;
+                const typeTimer = setInterval(() => {
+                    greetingEl.textContent += word[idx];
+                    idx++;
+                    if (idx >= word.length) {
+                        clearInterval(typeTimer);
+                        setTimeout(() => lines[0].classList.add('show'), 320);
+                        setTimeout(() => lines[1].classList.add('show'), 680);
+                        setTimeout(() => lines[2].classList.add('show'), 1040);
+                        setTimeout(runCycle, 4600);
+                    }
+                }, 130);
+            }
+
+            runCycle();
+        }
+
         // === 1. SCROLL PROGRESS BAR ===
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
@@ -569,7 +654,10 @@
             executeBenchmark(data);
         }
 
-        window.addEventListener('DOMContentLoaded', compareGenerated);
+        window.addEventListener('DOMContentLoaded', () => {
+            startTerminalAnimation();
+            compareGenerated();
+        });
     </script>
 </body>
 </html>
