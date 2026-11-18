@@ -8,6 +8,9 @@
     --accent: #36444f;
     --accent-hover: #253038;
     --accent-light: #5c7285;
+    --accent-border: #647d91;
+    --zinc-gray: #71717a;
+    --pure-white: #ffffff;
     --text-white: #ffffff;
     --text-gray-light: #a1a1aa;
     --text-black: #18181b;
@@ -24,6 +27,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 72px;
 }
 
 body {
@@ -41,9 +45,145 @@ body {
     left: 0;
     width: 0%;
     height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-light), #94a3b8);
-    z-index: 9999;
+    background: linear-gradient(90deg, #36444f, #71717a, #ffffff);
+    z-index: 10000;
     transition: width 0.1s ease-out;
+}
+
+/* === FITUR BARU 1: STICKY NAVIGATION BAR (MONOKROM 3 WARNA) === */
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 9990;
+    background-color: rgba(27, 29, 31, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.nav-inner {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.nav-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.nav-brand-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #36444f;
+    border: 1.5px solid #647d91;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #71717a;
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link.active {
+    background-color: #36444f;
+    border-color: #647d91;
+    color: #ffffff;
+}
+
+.nav-cta {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #36444f;
+    border: 1px solid #647d91;
+    padding: 8px 18px;
+    border-radius: 999px;
+    transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+    white-space: nowrap;
+}
+
+.nav-cta:hover {
+    background-color: #ffffff;
+    color: #36444f;
+    border-color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.mobile-menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: #36444f;
+    border: 1px solid #647d91;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.mobile-nav-drawer {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 24px 18px;
+    background-color: var(--dark-bg);
+    border-bottom: 1px solid #647d91;
+}
+
+.mobile-nav-drawer.open {
+    display: flex;
+}
+
+.mobile-nav-drawer a {
+    text-decoration: none;
+    color: #71717a;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+}
+
+.mobile-nav-drawer a:hover,
+.mobile-nav-drawer a.active {
+    background-color: #36444f;
+    border-color: #647d91;
+    color: #ffffff;
 }
 
 /* === KEYFRAMES ANIMASI === */
@@ -151,6 +291,10 @@ body {
     padding: 80px 20px;
 }
 
+.band-dark-divider {
+    border-top: 1px solid var(--border-dark);
+}
+
 .band-light {
     background-color: var(--light-bg);
     color: var(--text-black);
@@ -162,14 +306,14 @@ body {
     margin: 0 auto;
 }
 
-/* 1. HERO SECTION (2 KOLOM: JUDUL KIRI + ANIMASI 5 BARIS LEBIH KANAN DI KANAN) */
+/* 1. HERO SECTION (2 KOLOM: JUDUL KIRI + ANIMASI 5 BARIS DI KANAN) */
 .hero {
     position: relative;
     min-height: 575px;
     display: flex;
     align-items: center;
     text-align: left;
-    padding: 96px 28px;
+    padding: 86px 28px;
     background-color: var(--dark-bg);
     border-bottom: 1px solid var(--border-dark);
     overflow: hidden;
@@ -223,7 +367,7 @@ body {
     padding: 14px 28px;
 }
 
-/* === STAGE ANIMASI (AGAK KE KANAN & SEJAJAR ATAS DENGAN JUDUL) === */
+/* === STAGE ANIMASI === */
 .hero-stage {
     position: relative;
     min-height: 360px;
@@ -256,7 +400,6 @@ body {
     z-index: 1;
 }
 
-/* 4 Titik Sudut Seleksi Biru */
 .sel-handle {
     position: absolute;
     width: 8px;
@@ -269,7 +412,6 @@ body {
 .sel-handle.bl { bottom: -4.5px; left: -4.5px; }
 .sel-handle.br { bottom: -4.5px; right: -4.5px; }
 
-/* Mini Bar Visualisasi di dalam Kartu Canvas */
 .mini-bars {
     display: flex;
     align-items: flex-end;
@@ -381,7 +523,6 @@ body {
     white-space: nowrap;
 }
 
-/* Baris 1: "hallo." */
 .term-line-1 {
     color: #ffffff;
     font-weight: 600;
@@ -401,7 +542,6 @@ body {
     animation: blinkCursor 0.85s infinite;
 }
 
-/* Baris 2, 3, 4, 5 */
 .term-sub {
     opacity: 0;
     transform: translateY(6px);
@@ -446,7 +586,6 @@ body {
                 color 0.25s ease;
 }
 
-/* Kilau cahaya melintas saat tombol di-hover */
 .btn-red::after,
 .btn-outline::after,
 .btn-dark-solid::after {
@@ -470,12 +609,12 @@ body {
 .btn-red {
     background-color: var(--accent);
     color: #ffffff;
-    border: 1px solid var(--accent-light);
+    border: 1px solid #647d91;
 }
 
 .btn-red:hover {
     background-color: var(--accent-hover);
-    border-color: #7a93a8;
+    border-color: #647d91;
     transform: translateY(-3px);
     box-shadow: 0 10px 24px rgba(54, 68, 79, 0.5);
 }
@@ -517,7 +656,7 @@ body {
 }
 
 .band-dark .section-kicker {
-    color: var(--text-gray-light);
+    color: #71717a;
 }
 
 .section-title-wrap {
@@ -591,7 +730,7 @@ body {
 }
 
 .band-dark .editorial-card:hover {
-    border-color: var(--accent-light);
+    border-color: #647d91;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
 }
 
@@ -622,7 +761,7 @@ body {
 }
 
 .band-dark .red-bar {
-    background-color: var(--accent-light);
+    background-color: #647d91;
 }
 
 .editorial-card:hover .red-bar {
@@ -723,20 +862,20 @@ tbody tr {
 }
 
 .band-dark .mono-bold {
-    text-decoration-color: var(--accent-light);
+    text-decoration-color: #647d91;
 }
 
 .mono-muted {
     opacity: 0.65;
 }
 
-/* Kotak Grafik */
+/* === KOTAK GRAFIK + FITUR BARU 2 & 3: TOGGLE SKALA LINIER / LOGARITMIK (MONOKROM 3 WARNA) === */
 .chart-box {
     padding: 24px;
     border: 1px solid var(--border-light);
     background: #ffffff;
     margin: 24px 0;
-    border-radius: 3px;
+    border-radius: 6px;
     transition: box-shadow 0.3s ease;
 }
 
@@ -749,23 +888,93 @@ tbody tr {
     border-color: var(--border-dark);
 }
 
+.chart-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.chart-title-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #36444f;
+}
+
+.band-dark .chart-title-label {
+    color: #ffffff;
+}
+
+.scale-toggle-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #71717a;
+}
+
+.band-dark .scale-toggle-group {
+    background-color: rgba(54, 68, 79, 0.22);
+    border: 1px solid #647d91;
+}
+
+.scale-btn {
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: #71717a;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 6px 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.scale-btn:hover {
+    color: #36444f;
+}
+
+.band-dark .scale-btn:hover {
+    color: #ffffff;
+}
+
+.scale-btn.active {
+    background-color: #36444f;
+    border-color: #647d91;
+    color: #ffffff;
+}
+
+.chart-canvas-wrap {
+    position: relative;
+    height: 350px;
+    width: 100%;
+}
+
 /* Box Analisis Editorial */
 .analysis-note {
     border-left: 3px solid var(--accent);
     padding: 16px 22px;
     margin: 20px 0;
-    background: rgba(128, 128, 128, 0.06);
+    background: rgba(113, 113, 122, 0.08);
     font-size: 0.92rem;
     transition: border-left-width 0.25s ease, background-color 0.25s ease;
 }
 
 .analysis-note:hover {
     border-left-width: 6px;
-    background: rgba(128, 128, 128, 0.1);
+    background: rgba(113, 113, 122, 0.13);
 }
 
 .band-dark .analysis-note {
-    border-left-color: var(--accent-light);
+    border-left-color: #647d91;
 }
 
 .analysis-note ul {
@@ -775,6 +984,158 @@ tbody tr {
 
 .analysis-note li {
     margin-bottom: 6px;
+}
+
+/* === FITUR BARU 4: ARSITEKTUR & KODE FORTRAN (MONOKROM 3 WARNA MURNI) === */
+.fortran-explorer {
+    background-color: var(--dark-card);
+    border: 1px solid rgba(113, 113, 122, 0.4);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.fortran-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 20px;
+    background-color: var(--dark-bg);
+    border-bottom: 1px solid rgba(113, 113, 122, 0.32);
+}
+
+.fortran-tab-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.fortran-tab {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background-color: rgba(113, 113, 122, 0.14);
+    border: 1px solid transparent;
+    color: #71717a;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fortran-tab:hover {
+    color: #ffffff;
+    border-color: #71717a;
+}
+
+.fortran-tab.active {
+    background-color: #36444f;
+    border-color: #647d91;
+    color: #ffffff;
+}
+
+.fortran-copy-btn {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid #71717a;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.fortran-copy-btn:hover {
+    background-color: #36444f;
+    border-color: #647d91;
+    color: #ffffff;
+}
+
+.fortran-body {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+}
+
+.fortran-code-pane {
+    padding: 24px 26px;
+    background-color: #121315;
+    border-right: 1px solid rgba(113, 113, 122, 0.32);
+    overflow-x: auto;
+}
+
+.fortran-code-pane pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.72;
+    color: #ffffff;
+    margin: 0;
+}
+
+.fortran-info-pane {
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 22px;
+}
+
+.fortran-info-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #71717a;
+}
+
+.fortran-info-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.22rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 8px 0 12px 0;
+}
+
+.fortran-info-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: #ffffff;
+    opacity: 0.86;
+}
+
+.complexity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.comp-chip {
+    background-color: rgba(54, 68, 79, 0.28);
+    border: 1px solid #647d91;
+    padding: 11px 13px;
+    border-radius: 8px;
+}
+
+.comp-chip-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #71717a;
+}
+
+.comp-chip-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 3px;
 }
 
 /* FITUR INTERAKTIF: COBA SENDIRI */
@@ -846,7 +1207,8 @@ tbody tr {
 }
 
 .btn-dark-solid:hover {
-    background-color: #3f3f46;
+    background-color: #36444f;
+    border-color: #647d91;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(24, 24, 27, 0.25);
 }
@@ -888,9 +1250,9 @@ tbody tr {
     padding-top: 2px;
 }
 
-.algo-name.bubble { color: var(--accent); }
+.algo-name.bubble { color: #36444f; }
 .algo-name.selection { color: #18181b; }
-.algo-name.insertion { color: #52525b; }
+.algo-name.insertion { color: #71717a; }
 
 .bar-track {
     width: 100%;
@@ -920,7 +1282,7 @@ tbody tr {
     animation: barShimmer 2.2s infinite;
 }
 
-.bar-fill.bubble { background-color: var(--accent); }
+.bar-fill.bubble { background-color: #36444f; }
 .bar-fill.selection { background-color: #18181b; }
 .bar-fill.insertion { background-color: #71717a; }
 
@@ -930,7 +1292,7 @@ tbody tr {
 }
 
 .fastest-badge {
-    color: var(--accent);
+    color: #36444f;
     font-weight: 800;
     animation: badgePulse 1.8s ease-in-out infinite;
 }
@@ -942,19 +1304,83 @@ tbody tr {
     gap: 24px;
 }
 
+/* === FOOTER + FITUR BARU 5: KEMBALI KE ATAS (MONOKROM 3 WARNA) === */
 footer {
     background-color: #121315;
-    color: var(--text-gray-light);
-    text-align: center;
+    color: #71717a;
     padding: 32px 20px;
+    border-top: 1px solid var(--border-dark);
+}
+
+.footer-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer-copy {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    border-top: 1px solid var(--border-dark);
+    color: #71717a;
+}
+
+.back-top-link {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.back-top-link:hover {
+    background-color: #36444f;
+    border-color: #647d91;
+    color: #ffffff;
+}
+
+/* === NOTIFIKASI TOAST MONOKROM === */
+.toast-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 10001;
+    background-color: #36444f;
+    color: #ffffff;
+    border: 1px solid #647d91;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transform: translateY(14px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media (max-width: 960px) {
+    .nav-links,
+    .nav-cta {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: inline-flex;
+    }
     .hero { min-height: auto; padding: 75px 20px; }
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
     .hero-content { padding-top: 0; }
@@ -965,7 +1391,10 @@ footer {
     .floating-cursor { right: 22px; bottom: 34px; }
     .section-header.is-visible .section-title-wrap::before,
     .section-header.is-visible .section-title-wrap::after { width: 25px; }
+    .fortran-body { grid-template-columns: 1fr; }
+    .fortran-code-pane { border-right: none; border-bottom: 1px solid rgba(113, 113, 122, 0.32); }
     .demo-row { grid-template-columns: 1fr; }
     .algo-row { grid-template-columns: 1fr; gap: 6px; }
     .conclusion-grid { grid-template-columns: 1fr; }
+    .chart-canvas-wrap { height: 290px; }
 }

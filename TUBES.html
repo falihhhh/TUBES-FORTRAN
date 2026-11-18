@@ -5,12 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analisis Algoritma Sorting — Kelompok 26 PELLINORE</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
-<body>
+<body id="top">
 
     <!-- Indikator Progres Scroll -->
     <div id="scrollProgress" class="scroll-progress"></div>
+
+    <!-- FITUR BARU 1: STICKY NAVIGATION BAR -->
+    <nav class="site-nav" aria-label="Navigasi Utama">
+        <div class="nav-inner">
+            <a href="#top" class="nav-brand">
+                <span class="nav-brand-dot"></span>
+                <span>Kelompok 26 — Pellinore</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#hasil-pengujian" class="nav-link active" data-section="hasil-pengujian">Hasil Pengujian</a></li>
+                <li><a href="#kondisi-data" class="nav-link" data-section="kondisi-data">Kondisi &amp; Operasi</a></li>
+                <li><a href="#kode-fortran" class="nav-link" data-section="kode-fortran">Kode Fortran</a></li>
+                <li><a href="#coba-demo" class="nav-link" data-section="coba-demo">Simulator</a></li>
+                <li><a href="#kesimpulan" class="nav-link" data-section="kesimpulan">Kesimpulan</a></li>
+            </ul>
+
+            <a href="#coba-demo" class="nav-cta">Coba Simulator Live</a>
+
+            <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Buka menu navigasi" aria-expanded="false">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobileNavDrawer" class="mobile-nav-drawer">
+            <a href="#hasil-pengujian" class="mobile-nav-item">Hasil Pengujian</a>
+            <a href="#kondisi-data" class="mobile-nav-item">Kondisi &amp; Operasi</a>
+            <a href="#kode-fortran" class="mobile-nav-item">Kode Fortran</a>
+            <a href="#coba-demo" class="mobile-nav-item">Simulator</a>
+            <a href="#kesimpulan" class="mobile-nav-item">Kesimpulan</a>
+        </div>
+    </nav>
 
     <!-- BAND 1: HERO SECTION (JUDUL KIRI + ANIMASI TERMINAL 5 BARIS DI KANAN) -->
     <header class="hero">
@@ -142,8 +176,18 @@
                 </table>
             </div>
 
+            <!-- FITUR BARU 2: TOGGLE SKALA LINIER / LOGARITMIK PADA GAMBAR 1 -->
             <div class="chart-box reveal">
-                <canvas id="randomChart"></canvas>
+                <div class="chart-header-bar">
+                    <span class="chart-title-label">Gambar 1. Waktu Eksekusi pada Data Acak (ms)</span>
+                    <div class="scale-toggle-group" role="group" aria-label="Skala sumbu Y Gambar 1">
+                        <button type="button" class="scale-btn active" data-chart="random" data-scale="linear">Skala Linier</button>
+                        <button type="button" class="scale-btn" data-chart="random" data-scale="logarithmic">Skala Logaritmik</button>
+                    </div>
+                </div>
+                <div class="chart-canvas-wrap">
+                    <canvas id="randomChart"></canvas>
+                </div>
             </div>
 
             <div class="analysis-note reveal">
@@ -158,12 +202,12 @@
     </section>
 
     <!-- BAND 3: KONDISI DATA & PERBANDINGAN (DARK) -->
-    <section class="band-dark">
+    <section id="kondisi-data" class="band-dark">
         <div class="container">
             <div class="section-header reveal">
-                <div class="section-kicker">Data Sensitivity & Operations</div>
+                <div class="section-kicker">Data Sensitivity &amp; Operations</div>
                 <div class="section-title-wrap">
-                    <h2>Kondisi & Operasi Data</h2>
+                    <h2>Kondisi &amp; Operasi Data</h2>
                 </div>
                 <p class="section-desc">Evaluasi sensitivitas algoritma terhadap urutan awal masukan (n = 2.000) serta jumlah perbandingan elemen (n = 1.000).</p>
             </div>
@@ -203,8 +247,18 @@
                 </table>
             </div>
 
+            <!-- FITUR BARU 3: TOGGLE SKALA LINIER / LOGARITMIK PADA GAMBAR 2 -->
             <div class="chart-box reveal">
-                <canvas id="casesChart"></canvas>
+                <div class="chart-header-bar">
+                    <span class="chart-title-label">Gambar 2. Perbandingan Waktu pada Berbagai Kondisi Data (n = 2.000)</span>
+                    <div class="scale-toggle-group" role="group" aria-label="Skala sumbu Y Gambar 2">
+                        <button type="button" class="scale-btn active" data-chart="cases" data-scale="linear">Skala Linier</button>
+                        <button type="button" class="scale-btn" data-chart="cases" data-scale="logarithmic">Skala Logaritmik (Lihat Best Case)</button>
+                    </div>
+                </div>
+                <div class="chart-canvas-wrap">
+                    <canvas id="casesChart"></canvas>
+                </div>
             </div>
 
             <div class="analysis-note reveal">
@@ -234,6 +288,62 @@
                 </table>
             </div>
             <p class="section-desc reveal" style="max-width: 100%; text-align: left;">Meskipun jumlah perbandingan Bubble Sort (498.834) hampir sama dengan Selection Sort (499.500), Bubble Sort jauh lebih lambat karena melakukan ~250.000 kali operasi pertukaran elemen (inversi) pada data acak, sedangkan Selection Sort maksimal hanya 999 pertukaran.</p>
+        </div>
+    </section>
+
+    <!-- FITUR BARU 4: ARSITEKTUR & KODE FORTRAN (DARK MONOCHROME) -->
+    <section id="kode-fortran" class="band-dark band-dark-divider">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-kicker">Fortran 90 Implementation</div>
+                <div class="section-title-wrap">
+                    <h2>Arsitektur &amp; Kode Fortran</h2>
+                </div>
+                <p class="section-desc">Intip logika pemrograman Fortran 90 yang mendasari pengujian empiris ketiga algoritma beserta profil kompleksitas teoretisnya.</p>
+            </div>
+
+            <div class="fortran-explorer reveal">
+                <div class="fortran-tabs">
+                    <div class="fortran-tab-list" role="tablist">
+                        <button type="button" class="fortran-tab active" data-algo="bubble" role="tab">Bubble Sort (Flagged)</button>
+                        <button type="button" class="fortran-tab" data-algo="selection" role="tab">Selection Sort</button>
+                        <button type="button" class="fortran-tab" data-algo="insertion" role="tab">Insertion Sort</button>
+                    </div>
+                    <button type="button" id="copyFortranBtn" class="fortran-copy-btn">Salin Kode Fortran</button>
+                </div>
+
+                <div class="fortran-body">
+                    <div class="fortran-code-pane">
+                        <pre id="fortranCodeDisplay"></pre>
+                    </div>
+                    <div class="fortran-info-pane">
+                        <div>
+                            <div id="fortranAlgoKicker" class="fortran-info-kicker">Algoritma Pertukaran Bertetangga</div>
+                            <h3 id="fortranAlgoTitle" class="fortran-info-title">Bubble Sort (dengan Penanda)</h3>
+                            <p id="fortranAlgoDesc" class="fortran-info-desc"></p>
+                        </div>
+
+                        <div class="complexity-grid">
+                            <div class="comp-chip">
+                                <div class="comp-chip-label">Best Case</div>
+                                <div id="fcBest" class="comp-chip-val">O(n)</div>
+                            </div>
+                            <div class="comp-chip">
+                                <div class="comp-chip-label">Average Case</div>
+                                <div id="fcAvg" class="comp-chip-val">O(n²)</div>
+                            </div>
+                            <div class="comp-chip">
+                                <div class="comp-chip-label">Worst Case</div>
+                                <div id="fcWorst" class="comp-chip-val">O(n²)</div>
+                            </div>
+                            <div class="comp-chip">
+                                <div class="comp-chip-label">Memori &amp; Sifat</div>
+                                <div id="fcSpace" class="comp-chip-val">O(1) • Stabil</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -348,14 +458,62 @@
         </div>
     </section>
 
+    <!-- FITUR BARU 5: KEMBALI KE ATAS DI FOOTER -->
     <footer class="reveal">
-        Kelompok 26 — Pellinore • Tugas Besar Fortran 2026
+        <div class="footer-inner">
+            <span class="footer-copy">Kelompok 26 — Pellinore • Tugas Besar Fortran 2026</span>
+            <a href="#top" class="back-top-link">Kembali ke Atas ↑</a>
+        </div>
     </footer>
 
-    <script>
-        Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+    <!-- Notifikasi Toast Monokrom -->
+    <div id="toastBox" class="toast-notification" role="status" aria-live="polite"></div>
 
-        // === 0. ANIMASI KETIK & MUNCUL BERURUTAN (5 BARIS, TEMPO AGAK LAMBAT) ===
+    <script>
+        if (typeof Chart !== 'undefined') {
+            Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+        }
+
+        // === NOTIFIKASI TOAST & SALIN CLIPBOARD ===
+        let toastTimer = null;
+        function showToast(message) {
+            const box = document.getElementById('toastBox');
+            if (!box) return;
+            box.textContent = message;
+            box.classList.add('show');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                box.classList.remove('show');
+            }, 2600);
+        }
+
+        async function copyTextToClipboard(text, successMsg) {
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(text);
+                    showToast(successMsg);
+                    return;
+                }
+            } catch (e) {
+                // Lanjut ke fallback execCommand
+            }
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMsg);
+            } catch (err) {
+                showToast('Gagal menyalin teks.');
+            }
+            document.body.removeChild(ta);
+        }
+
+        // === 0. ANIMASI KETIK & MUNCUL BERURUTAN (5 BARIS) ===
         function startTerminalAnimation() {
             const greetingEl = document.getElementById('typedGreeting');
             const lines = [
@@ -388,7 +546,22 @@
             runCycle();
         }
 
-        // === 1. SCROLL PROGRESS BAR ===
+        // === 1. SCROLL PROGRESS BAR & STICKY NAVBAR SCROLL-SPY ===
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const open = mobileNavDrawer.classList.toggle('open');
+            mobileMenuBtn.setAttribute('aria-expanded', String(open));
+        });
+
+        document.querySelectorAll('.mobile-nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                mobileNavDrawer.classList.remove('open');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -396,14 +569,30 @@
             document.getElementById('scrollProgress').style.width = `${progress}%`;
         });
 
-        // === 2. SCROLL REVEAL & ANIMASI GRAFIK SAAT TERLIHAT ===
-        let randomChartInit = false;
-        let casesChartInit = false;
+        const spyIds = ['hasil-pengujian', 'kondisi-data', 'kode-fortran', 'coba-demo', 'kesimpulan'];
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const activeId = entry.target.id;
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('data-section') === activeId);
+                    });
+                }
+            });
+        }, { rootMargin: '-30% 0px -55% 0px' });
+
+        spyIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) spyObserver.observe(el);
+        });
+
+        // === 2. SCROLL REVEAL & GRAFIK MONOKROM + TOGGLE SKALA ===
+        let randomChartInstance = null;
+        let casesChartInstance = null;
 
         function initRandomChart() {
-            if (randomChartInit) return;
-            randomChartInit = true;
-            new Chart(document.getElementById('randomChart'), {
+            if (randomChartInstance || typeof Chart === 'undefined') return;
+            randomChartInstance = new Chart(document.getElementById('randomChart'), {
                 type: 'line',
                 data: {
                     labels: ['100', '500', '1.000', '2.500', '5.000'],
@@ -429,8 +618,8 @@
                         {
                             label: 'Insertion Sort',
                             data: [0.10, 2.93, 11.80, 80.66, 352.91],
-                            borderColor: '#9ca3af',
-                            backgroundColor: '#9ca3af',
+                            borderColor: '#71717a',
+                            backgroundColor: '#71717a',
                             borderDash: [2, 3],
                             tension: 0.25,
                             borderWidth: 2.5
@@ -439,26 +628,34 @@
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
                     animation: {
                         duration: 1200,
                         easing: 'easeOutQuart'
                     },
                     plugins: {
-                        title: { display: true, text: 'GAMBAR 1. WAKTU EKSEKUSI PADA DATA ACAK (MS)', color: '#18181b', font: { family: 'Montserrat', size: 13, weight: 'bold' } },
-                        tooltip: { mode: 'index', intersect: false }
+                        legend: { labels: { color: '#18181b' } },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: '#36444f',
+                            borderColor: '#647d91',
+                            borderWidth: 1,
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff'
+                        }
                     },
                     scales: {
                         x: { title: { display: true, text: 'Ukuran Data (n)', color: '#52525b' }, grid: { color: '#f4f4f5' } },
-                        y: { title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#52525b' }, grid: { color: '#f4f4f5' }, beginAtZero: true }
+                        y: { type: 'linear', title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#52525b' }, grid: { color: '#f4f4f5' }, beginAtZero: true }
                     }
                 }
             });
         }
 
         function initCasesChart() {
-            if (casesChartInit) return;
-            casesChartInit = true;
-            new Chart(document.getElementById('casesChart'), {
+            if (casesChartInstance || typeof Chart === 'undefined') return;
+            casesChartInstance = new Chart(document.getElementById('casesChart'), {
                 type: 'bar',
                 data: {
                     labels: ['Terurut (Best Case)', 'Acak (Average Case)', 'Terbalik (Worst Case)'],
@@ -469,29 +666,71 @@
                             backgroundColor: '#36444f',
                             borderColor: '#647d91',
                             borderWidth: 1.5,
-                            borderRadius: 2
+                            borderRadius: 4
                         },
-                        { label: 'Selection Sort', data: [48.38, 46.81, 51.87], backgroundColor: '#ffffff', borderRadius: 2 },
-                        { label: 'Insertion Sort', data: [0.12, 58.49, 89.16], backgroundColor: '#71717a', borderRadius: 2 }
+                        {
+                            label: 'Selection Sort',
+                            data: [48.38, 46.81, 51.87],
+                            backgroundColor: '#ffffff',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Insertion Sort',
+                            data: [0.12, 58.49, 89.16],
+                            backgroundColor: '#71717a',
+                            borderRadius: 4
+                        }
                     ]
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
                     animation: {
                         duration: 1100,
                         easing: 'easeOutQuart'
                     },
                     plugins: {
-                        title: { display: true, text: 'GAMBAR 2. PERBANDINGAN WAKTU PADA BERBAGAI KONDISI DATA (N = 2.000)', color: '#ffffff', font: { family: 'Montserrat', size: 13, weight: 'bold' } },
-                        legend: { labels: { color: '#e4e4e7' } }
+                        legend: { labels: { color: '#ffffff' } },
+                        tooltip: {
+                            backgroundColor: '#36444f',
+                            borderColor: '#647d91',
+                            borderWidth: 1,
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff'
+                        }
                     },
                     scales: {
-                        x: { ticks: { color: '#a1a1aa' }, grid: { color: '#32363a' } },
-                        y: { ticks: { color: '#a1a1aa' }, title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#a1a1aa' }, grid: { color: '#32363a' }, beginAtZero: true }
+                        x: { ticks: { color: '#ffffff' }, grid: { color: '#32363a' } },
+                        y: { type: 'linear', ticks: { color: '#71717a' }, title: { display: true, text: 'Waktu Eksekusi (ms)', color: '#ffffff' }, grid: { color: '#32363a' }, beginAtZero: true }
                     }
                 }
             });
         }
+
+        document.querySelectorAll('.scale-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const chartKey = btn.getAttribute('data-chart');
+                const scaleType = btn.getAttribute('data-scale');
+                btn.parentElement.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                if (chartKey === 'random') {
+                    initRandomChart();
+                    if (randomChartInstance) {
+                        randomChartInstance.options.scales.y.type = scaleType;
+                        randomChartInstance.options.scales.y.beginAtZero = (scaleType === 'linear');
+                        randomChartInstance.update();
+                    }
+                } else if (chartKey === 'cases') {
+                    initCasesChart();
+                    if (casesChartInstance) {
+                        casesChartInstance.options.scales.y.type = scaleType;
+                        casesChartInstance.options.scales.y.beginAtZero = (scaleType === 'linear');
+                        casesChartInstance.update();
+                    }
+                }
+            });
+        });
 
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -506,7 +745,137 @@
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // === 3. LOGIKA SIMULATOR "COBA SENDIRI" ===
+        // === 3. EXPLORER ARSITEKTUR & KODE FORTRAN 90 ===
+        const fortranSpecs = {
+            bubble: {
+                kicker: 'Algoritma Pertukaran Bertetangga',
+                title: 'Bubble Sort (dengan Penanda)',
+                desc: 'Membandingkan pasangan elemen bersebelahan dan menukarnya jika urutan salah. Variabel logika swapped menghentikan iterasi lebih awal dalam 1 lintasan apabila array sudah terurut.',
+                best: 'O(n)',
+                avg: 'O(n²)',
+                worst: 'O(n²)',
+                space: 'O(1) • Stabil',
+                code: `SUBROUTINE bubble_sort(arr, n, comp, swaps)
+  IMPLICIT NONE
+  INTEGER, INTENT(IN)    :: n
+  INTEGER, INTENT(INOUT) :: arr(n)
+  INTEGER(8), INTENT(OUT):: comp, swaps
+  INTEGER :: i, j, temp
+  LOGICAL :: swapped
+
+  comp = 0_8; swaps = 0_8
+  DO i = 1, n - 1
+    swapped = .FALSE.
+    DO j = 1, n - i
+      comp = comp + 1_8
+      IF (arr(j) > arr(j + 1)) THEN
+        temp = arr(j)
+        arr(j) = arr(j + 1)
+        arr(j + 1) = temp
+        swaps = swaps + 1_8
+        swapped = .TRUE.
+      END IF
+    END DO
+    IF (.NOT. swapped) EXIT
+  END DO
+END SUBROUTINE bubble_sort`
+            },
+            selection: {
+                kicker: 'Algoritma Pencarian Minimum',
+                title: 'Selection Sort',
+                desc: 'Mencari indeks elemen terkecil pada sisa bagian yang belum terurut, lalu menukarnya tepat satu kali di akhir tiap lintasan luar. Jumlah perbandingan selalu tetap n(n−1)/2 di segala kondisi.',
+                best: 'O(n²)',
+                avg: 'O(n²)',
+                worst: 'O(n²)',
+                space: 'O(1) • Tidak Stabil',
+                code: `SUBROUTINE selection_sort(arr, n, comp, swaps)
+  IMPLICIT NONE
+  INTEGER, INTENT(IN)    :: n
+  INTEGER, INTENT(INOUT) :: arr(n)
+  INTEGER(8), INTENT(OUT):: comp, swaps
+  INTEGER :: i, j, min_idx, temp
+
+  comp = 0_8; swaps = 0_8
+  DO i = 1, n - 1
+    min_idx = i
+    DO j = i + 1, n
+      comp = comp + 1_8
+      IF (arr(j) < arr(min_idx)) THEN
+        min_idx = j
+      END IF
+    END DO
+    IF (min_idx /= i) THEN
+      temp = arr(i)
+      arr(i) = arr(min_idx)
+      arr(min_idx) = temp
+      swaps = swaps + 1_8
+    END IF
+  END DO
+END SUBROUTINE selection_sort`
+            },
+            insertion: {
+                kicker: 'Algoritma Penyisipan Bertahap',
+                title: 'Insertion Sort',
+                desc: 'Mengambil elemen kunci (key) lalu menggeser elemen-elemen yang lebih besar di sebelah kirinya satu posisi ke kanan. Sangat efisien pada data kecil atau data yang sudah terurut.',
+                best: 'O(n)',
+                avg: 'O(n²)',
+                worst: 'O(n²)',
+                space: 'O(1) • Stabil',
+                code: `SUBROUTINE insertion_sort(arr, n, comp, shifts)
+  IMPLICIT NONE
+  INTEGER, INTENT(IN)    :: n
+  INTEGER, INTENT(INOUT) :: arr(n)
+  INTEGER(8), INTENT(OUT):: comp, shifts
+  INTEGER :: i, j, key_val
+
+  comp = 0_8; shifts = 0_8
+  DO i = 2, n
+    key_val = arr(i)
+    j = i - 1
+    DO WHILE (j >= 1)
+      comp = comp + 1_8
+      IF (arr(j) > key_val) THEN
+        arr(j + 1) = arr(j)
+        shifts = shifts + 1_8
+        j = j - 1
+      ELSE
+        EXIT
+      END IF
+    END DO
+    arr(j + 1) = key_val
+  END DO
+END SUBROUTINE insertion_sort`
+            }
+        };
+
+        let activeFortranKey = 'bubble';
+
+        function renderFortranTab(key) {
+            activeFortranKey = key;
+            const info = fortranSpecs[key];
+            document.getElementById('fortranCodeDisplay').textContent = info.code;
+            document.getElementById('fortranAlgoKicker').textContent = info.kicker;
+            document.getElementById('fortranAlgoTitle').textContent = info.title;
+            document.getElementById('fortranAlgoDesc').textContent = info.desc;
+            document.getElementById('fcBest').textContent = info.best;
+            document.getElementById('fcAvg').textContent = info.avg;
+            document.getElementById('fcWorst').textContent = info.worst;
+            document.getElementById('fcSpace').textContent = info.space;
+
+            document.querySelectorAll('.fortran-tab').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-algo') === key);
+            });
+        }
+
+        document.querySelectorAll('.fortran-tab').forEach(btn => {
+            btn.addEventListener('click', () => renderFortranTab(btn.getAttribute('data-algo')));
+        });
+
+        document.getElementById('copyFortranBtn').addEventListener('click', () => {
+            copyTextToClipboard(fortranSpecs[activeFortranKey].code, `Kode Fortran ${fortranSpecs[activeFortranKey].title} berhasil disalin!`);
+        });
+
+        // === 4. LOGIKA SIMULATOR "COBA SENDIRI" ===
         function runBubble(arr) {
             const a = arr.slice();
             let comp = 0, swaps = 0;
@@ -631,12 +1000,12 @@
         function compareCustom() {
             const raw = document.getElementById('customNumbers').value.trim();
             if (!raw) {
-                alert('Masukkan minimal 2 angka terlebih dahulu.');
+                showToast('Masukkan minimal 2 angka terlebih dahulu.');
                 return;
             }
             const nums = raw.split(/[\s,]+/).map(Number).filter(n => !isNaN(n));
             if (nums.length < 2) {
-                alert('Masukkan minimal 2 angka valid yang dipisahkan spasi atau koma.');
+                showToast('Masukkan minimal 2 angka valid yang dipisahkan spasi atau koma.');
                 return;
             }
             executeBenchmark(nums);
@@ -662,7 +1031,10 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             startTerminalAnimation();
+            renderFortranTab('bubble');
             compareGenerated();
+            initRandomChart();
+            initCasesChart();
         });
     </script>
 </body>
